@@ -13,3 +13,5 @@ class Book(models.Model):
     review = models.TextField
     isbn - models.CharField(max_length=20, verbose_name='ISBN number of the book')
 
+
+
