@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 class Movie(models.Model):
+    id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=64)
     # poster = models.ImageField()
     released_at = models.IntegerField()
