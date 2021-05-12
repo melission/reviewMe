@@ -1,8 +1,8 @@
 from django.db import models
+from django.contrib import auth
 
 
 # Create your models here.
-
 class Publisher(models.Model):
     """The company that publishing books.
     One to many relationship."""
@@ -46,3 +46,12 @@ class BookContributor(models.Model):
     role = models.CharField(verbose_name='The role that a contributor had int he book',
                             choices=ContributionRole.choices,
                             max_length=20)
+
+
+class Review(models.Model):
+    content = models.TextField(help_text='The review text.')
+    rating = models.IntegerField(help_text='The rating the reviewer has given')
+    created_at = models.DateTimeField(auto_now_add=True, help_text='The date and time the review was created')
+    edited_at = models.DateTimeField(null=True, help_text='The date and time the review was edited for the last time')
+    creator = models.ForeignKey(auth.get_user_model(), on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, help_text='The book the review for')
