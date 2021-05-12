@@ -4,12 +4,16 @@ from django.db import models
 # Create your models here.
 
 class Publisher(models.Model):
+    """The company that publishing books.
+    One to many relationship."""
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=64)
     website = models.URLField(help_text="Publisher's website")
 
 
 class Book(models.Model):
+    """Many to many relationship. A book can be written by several contributors.
+    A contributor can [help] create several books"""
     id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=64,
                              help_text='The title of the book', blank=False)
@@ -23,7 +27,8 @@ class Book(models.Model):
 
 
 class Contributor(models.Model):
-    """A contributor to a Book. Autor, editor, etc"""
+    """A contributor to a Book. Author, editor, etc.
+    Many to many relationship (f contributor may create several books, a book can be written by several contributors"""
     id = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
