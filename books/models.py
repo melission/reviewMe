@@ -24,6 +24,7 @@ class Book(models.Model):
     review = models.TextField
     isbn = models.CharField(max_length=20, verbose_name='ISBN number of the book')
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+    contributors = models.ManyToManyField('Contributor', through='BookContributor')
 
 
 class Contributor(models.Model):
@@ -32,3 +33,16 @@ class Contributor(models.Model):
     id = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
+
+
+# the model helps to save data to both tables: Book and Contributor
+class BookContributor(models.Model):
+    class ContributionRole(models.TextChoices):
+        AUTHOR = 'AUTHOR', 'Author'
+        CO_AUTHOR = 'CO_AUTHOR', 'Co-Author'
+        EDITOR = 'EDITOR', 'Editor'
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    contributor = models.ForeignKey(Contributor, on_delete=models.CASCADE)
+    role = models.CharField(verbose_name='The role that a contributor had int he book',
+                            choices=ContributionRole.choices,
+                            max_length=20)
