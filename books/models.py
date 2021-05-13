@@ -10,6 +10,9 @@ class Publisher(models.Model):
     name = models.CharField(max_length=64)
     website = models.URLField(help_text="Publisher's website")
 
+    def __str__(self):
+        return self.name
+
 
 class Book(models.Model):
     """Many to many relationship. A book can be written by several contributors.
@@ -26,6 +29,9 @@ class Book(models.Model):
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     contributors = models.ManyToManyField('Contributor', through='BookContributor')
 
+    def __str__(self):
+        return self.title
+
 
 class Contributor(models.Model):
     """A contributor to a Book. Author, editor, etc.
@@ -33,6 +39,9 @@ class Contributor(models.Model):
     id = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.first_name
 
 
 # the model helps to save data to both tables: Book and Contributor
