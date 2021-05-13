@@ -21,7 +21,7 @@ class Book(models.Model):
     title = models.CharField(max_length=64,
                              help_text='The title of the book', blank=False)
     # cover = models.ImageFiled()
-    published_at = models.IntegerField(help_text='The year the book was published')
+    published_at = models.DateTimeField(help_text='The year the book was published')
     # publisher_name = models.CharField(max_length=64, help_text='Publisher name')
     description = models.CharField(max_length=1000)
     review = models.TextField
