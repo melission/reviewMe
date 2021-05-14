@@ -35,7 +35,7 @@ class Book(models.Model):
 
 class Contributor(models.Model):
     """A contributor to a Book. Author, editor, etc.
-    Many to many relationship (f contributor may create several books, a book can be written by several contributors"""
+    Many to many relationship (a contributor may create several books, a book can be written by several contributors"""
     id = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
