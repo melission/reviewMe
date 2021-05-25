@@ -3,6 +3,6 @@ from .views import *
 
 urlpatterns = [
     # path('', books_all),
-    path('', BookHomePage),
+    path('', BookHomePage.as_view()),
     path('search/', book_search),
 ]
