@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,9 @@
     <title>Review a book</title>
 </head>
 <body>
+{% block content %}
     {{ name }} template says Hi
-    {{ context }}
+<p> {{ context }} </p>
+{% endblock %}
 </body>
 </html>
