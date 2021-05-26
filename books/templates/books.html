@@ -9,6 +9,9 @@
 {% block content %}
     {{ name }} template says Hi
 <p> {{ context }} </p>
+    {% for book in book_list %}
+    <li>{{ book }}</li>
+    {% endfor %}
 {% endblock %}
 </body>
 </html>
