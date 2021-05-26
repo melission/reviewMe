@@ -7,7 +7,7 @@ from .models import *
 # Create your views here.
 def books_all(request):
     book_count = Book.objects.count()
-    return render(request=request, context={'context': f"there are {book_count} books has found"},
+    return render(request=request, context={'context': f"there are {book_count} books have being found"},
                   template_name='books.html')
 
 # class BookHomePage(TemplateView):
