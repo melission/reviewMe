@@ -7,7 +7,9 @@
 </head>
 <body>
 {% block content %}
-For {{ book }} we have {{ number_of_reviews }} reviews with average score of {{ book_rating }}
+    {%  for book in book_list %}
+    <ul>For {{ book.book }} we have {{ book.number_of_reviews }} reviews with average score of {{ book.book_rating }}</ul>
+    {% endfor %}
 {% endblock %}
 </body>
 </html>
