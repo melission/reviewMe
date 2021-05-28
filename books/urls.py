@@ -6,5 +6,5 @@ urlpatterns = [
     path('', books_all),
     # path('', BookHomePage.as_view()),
     path('search/', book_search),
-    path('book/rating/', book_list_page)
+    path('rating/', book_list_page)
 ]
