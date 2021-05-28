@@ -19,4 +19,4 @@ def book_list_page(request):
                           'book_rating': book_rating,
                           'number_of_reviews': number_of_reviews})
     context = {'book_list': book_list}
-    return render(request, 'book_list.html')
+    return render(request, 'book_list.html', context=context)
