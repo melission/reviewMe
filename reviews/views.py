@@ -17,6 +17,7 @@ def book_list_page(request):
             number_of_reviews = 0
         book_list.append({'book': book,
                           'book_rating': book_rating,
-                          'number_of_reviews': number_of_reviews})
+                          'number_of_reviews': number_of_reviews,
+                          'publisher': book.publisher})
     context = {'book_list': book_list}
     return render(request, 'book_list.html', context=context)
