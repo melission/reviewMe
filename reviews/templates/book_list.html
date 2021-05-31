@@ -7,9 +7,20 @@
 </head>
 <body>
 {% block content %}
+    {{ context }}
+    <ul class="list-group">
     {%  for book in book_list %}
-    <ul>For {{ book.book }} we have {{ book.number_of_reviews }} reviews with average score of {{ book.book_rating }}</ul>
+        <li class="list-group-item">
+            The book {{ book.book }} written by {% for contrib in book.contributors %} {{ contrib }} {% endfor %}
+                published by {{ book.publisher }}
+            {% if book.number_of_reviews == 0 %} has no reviews yet {% endif %}
+            {% if book.number_of_reviews > 1%} has in total {{ book.number_of_reviews }}
+                reviews with average score of {{ book.book_rating }}{% endif %}
+            {% if book.number_of.reviews == 1 %} has only {{ book.number_of_reviews }}
+                review with average score of {{ book.book_rating }}{% endif %}
+        </li>
     {% endfor %}
+    </ul>
 {% endblock %}
 </body>
 </html>
