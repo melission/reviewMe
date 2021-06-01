@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from books.models import Book, Review
+from books.models import Book, Review, BookContributor
 from .utils import average_rating
 # Create your views here.
 
@@ -9,6 +9,7 @@ def book_list_page(request):
     book_list = []
     for book in books:
         reviews = Review.objects.all()
+        author = book.contributors.filter(bookcontributor__role='AUTHOR')
         if reviews:
             book_rating = average_rating([review.rating for review in reviews])
             number_of_reviews = len(reviews)
@@ -18,6 +19,7 @@ def book_list_page(request):
         book_list.append({'book': book,
                           'book_rating': book_rating,
                           'number_of_reviews': number_of_reviews,
-                          'publisher': book.publisher})
+                          'publisher': book.publisher,
+                          'author': author[0]})
     context = {'book_list': book_list}
     return render(request, 'book_list.html', context=context)
