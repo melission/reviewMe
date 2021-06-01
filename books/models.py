@@ -3,6 +3,8 @@ from django.contrib import auth
 
 # from books.models import Contributor, Book, Publisher, BookContributor, Review
 # Create your models here.
+
+
 class Publisher(models.Model):
     """The company that publishing books.
     One to many relationship."""
