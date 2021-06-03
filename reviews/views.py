@@ -27,6 +27,7 @@ def book_list_page(request):
                           'number_of_reviews': number_of_reviews,
                           'publisher': book.publisher,
                           'authors': contributors,
+                          'id': book.id,
                           })
     context = {'book_list': book_list}
     return render(request, 'book_list.html', context=context)
