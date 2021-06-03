@@ -15,6 +15,12 @@ def books_all(request):
 # class BookHomePage(TemplateView):
 #     template_name = 'books.html'
 
+
+def detailed_book_view(request, id):
+    book = Book.objects.get(id=id)
+    return render(request, context={'book': book}, template_name='detailed_book_view.html')
+
+
 def book_search(request):
     # http://127.0.0.1:8000/books/search/?search_phrase=%27another%20good%20book%20to%20read%27
     search = request.GET.get("search_phrase") or 'one marvelous book'
