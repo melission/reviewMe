@@ -28,6 +28,7 @@ def book_list_page(request):
                           'publisher': book.publisher,
                           'authors': contributors,
                           'id': book.id,
+                          'date': book.published_at.year,
                           })
     context = {'book_list': book_list}
     return render(request, 'book_list.html', context=context)

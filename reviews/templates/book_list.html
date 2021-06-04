@@ -13,7 +13,7 @@
         <li class="list-group-item">
             <p>{{ book.book }}</p>
             <p>written by {% for author in book.authors %} {{ author }}, {% endfor %}</p>
-            <p>published by {{ book.publisher }}</p>
+            <p>published by {{ book.publisher }} in {{ book.date }},</p>
             {% if book.number_of_reviews == 0 %} no reviews yet {% endif %}
             {% if book.number_of_reviews > 1%} {{ book.number_of_reviews }}
                 reviews with average score of {{ book.book_rating }}{% endif %}
