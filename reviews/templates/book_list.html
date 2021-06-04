@@ -11,13 +11,15 @@
     <ul class="list-group">
     {%  for book in book_list %}
         <li class="list-group-item">
-            The book {{ book.book }} written by {% for author in book.authors %} {{ author }} {% endfor %}
-                published by {{ book.publisher }}
-            {% if book.number_of_reviews == 0 %} has no reviews yet {% endif %}
-            {% if book.number_of_reviews > 1%} has in total {{ book.number_of_reviews }}
+            <p>{{ book.book }}</p>
+            <p>written by {% for author in book.authors %} {{ author }}, {% endfor %}</p>
+            <p>published by {{ book.publisher }}</p>
+            {% if book.number_of_reviews == 0 %} no reviews yet {% endif %}
+            {% if book.number_of_reviews > 1%} {{ book.number_of_reviews }}
                 reviews with average score of {{ book.book_rating }}{% endif %}
-            {% if book.number_of.reviews == 1 %} has only {{ book.number_of_reviews }}
+            {% if book.number_of.reviews == 1 %} {{ book.number_of_reviews }}
                 review with average score of {{ book.book_rating }}{% endif %}
+            <a class="nav-link active" aria-current="page" href="/books/rating/{{ book.id }}">See details and reviews</a>
         </li>
     {% endfor %}
     </ul>
