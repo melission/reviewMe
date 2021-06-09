@@ -58,6 +58,9 @@ class BookContributor(models.Model):
                             choices=ContributionRole.choices,
                             max_length=20)
 
+    def __str__(self):
+        return f'{self.book} {self.contributor} {self.role}'
+
 
 class Review(models.Model):
     content = models.TextField(help_text='The review text.')
