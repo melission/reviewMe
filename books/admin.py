@@ -5,8 +5,9 @@ from reviewMe.admin import *
 
 
 class BookAdmin(admin.ModelAdmin):
+    date_hierarchy = 'published_at'
     list_display = ('title', 'isnb_with_dashes', 'published_at')
-    list_filter = ('publisher', 'contributors',)
+    list_filter = ('publisher', 'contributors', 'published_at',)
 
     def isnb_with_dashes(self, obj):
         """ '9780316769174' => '978-0-31-676917-4' """
