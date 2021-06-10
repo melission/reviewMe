@@ -27,9 +27,14 @@ class Book(models.Model):
     # publisher_name = models.CharField(max_length=64, help_text='Publisher name')
     description = models.CharField(max_length=1000)
     review = models.TextField
-    isbn = models.CharField(max_length=20, verbose_name='ISBN number of the book')
+    isbn = models.CharField(max_length=13, verbose_name='ISBN number of the book')
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     contributors = models.ManyToManyField('Contributor', through='BookContributor')
+
+    # def isnb_with_dashes(self):
+    #     """ '9780316769174' => '978-0-31-676917-4' """
+    #     return '{}-{}-{}-{}-{}'.format(
+    #         self.isbn[0:3], self.isbn[3:4], self.isbn[4:6], self.isbn[6:12], self.isbn[12:13])
 
     def __str__(self):
         return self.title
