@@ -27,7 +27,12 @@ class ContributorAdmin(admin.ModelAdmin):
     search_fields = ('first_name', 'last_name')
 
 
-admin.site.register(Publisher)
+class PublisherAdmin(admin.ModelAdmin):
+    list_filter = ('name',)
+    search_fields = ('name',)
+
+
+admin.site.register(Publisher, PublisherAdmin)
 admin.site.register(Contributor, ContributorAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(BookContributor)
