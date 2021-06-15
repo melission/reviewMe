@@ -21,8 +21,14 @@ class BookAdmin(admin.ModelAdmin):
             obj.isbn[0:3], obj.isbn[3:4], obj.isbn[4:6], obj.isbn[6:12], obj.isbn[12:13])
 
 
+class ContributorAdmin(admin.ModelAdmin):
+    list_display = ('last_name', 'first_name')
+    list_filter = ('last_name',)
+    search_fields = ('first_name', 'last_name')
+
+
 admin.site.register(Publisher)
-admin.site.register(Contributor)
+admin.site.register(Contributor, ContributorAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(BookContributor)
 admin.site.register(Review)
