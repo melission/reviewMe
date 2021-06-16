@@ -18,7 +18,31 @@ class Directors:
     last_name = models.CharField(max_length=20)
 
 
+class MovieDirectors:
+    class DirectorRole(models.TextChoices):
+        director = 'DIRECTOR', 'Director'
+        co_director = 'ONE OF THE DIRECTORS', 'One of the directors'
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    director = models.ForeignKey(Directors, on_delete=models.CASCADE)
+    role = models.CharField(choices=DirectorRole)
+
+
 class Actors:
     id = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
+
+
+class MovieActors:
+    class ActorRole:
+        main_actor = 'MAIN ACTOR', 'Main actor'
+        supporting_role = 'SUPPORTING ROLE', 'Supporting role'
+        # for crowd seen only else supporting role
+        other = 'OTHER', 'Other'
+        # for cameo only
+        cameo = 'CAMEO', 'Cameo'
+    movie = models.ForeignKey(Actors, on_delete=models.CASCADE)
+    actor = models.ForeignKey(Actors, on_delete=models.CASCADE)
+    role = models.CharField(choices=ActorRole,
+                            verbose_name='Supporting role for everyone apart main actors, '
+                                         'for crowd seen actors use "other"')
