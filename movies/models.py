@@ -8,4 +8,5 @@ class Movie(models.Model):
     # poster = models.ImageField()
     released_at = models.IntegerField()
     description = models.CharField(max_length=1000)
-
+    directors = models.ManyToManyField('Directors', through='MovieDirectors')
+    actors = models.ManyToManyField('Actors', through='MovieActors')
