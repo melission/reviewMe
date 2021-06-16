@@ -10,3 +10,15 @@ class Movie(models.Model):
     description = models.CharField(max_length=1000)
     directors = models.ManyToManyField('Directors', through='MovieDirectors')
     actors = models.ManyToManyField('Actors', through='MovieActors')
+
+
+class Directors:
+    id = models.IntegerField(primary_key=True)
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+
+
+class Actors:
+    id = models.IntegerField(primary_key=True)
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
