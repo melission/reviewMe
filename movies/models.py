@@ -10,6 +10,7 @@ class Movie(models.Model):
     description = models.CharField(max_length=1000)
     directors = models.ManyToManyField('Directors', through='MovieDirectors')
     actors = models.ManyToManyField('Actors', through='MovieActors')
+    writers = models.ManyToManyField('Writers', through='MovieWriters')
 
 
 class Directors:
@@ -46,3 +47,18 @@ class MovieActors:
     role = models.CharField(choices=ActorRole,
                             verbose_name='Supporting role for everyone apart main actors, '
                                          'for crowd seen actors use "other"')
+
+
+class Writers:
+    id = models.IntegerField(primary_key=True)
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+
+
+class MovieWriters:
+    class WriterRole:
+        author = 'AUTHOR', 'Author'
+        co_author = 'CO_AUTHOR', 'Co_author'
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    writer = models.ForeignKey(Writers, on_delete=models.CASCADE)
+    role = models.CharField(choices=WriterRole)
