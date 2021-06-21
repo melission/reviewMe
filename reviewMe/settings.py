@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import json
+import os
 from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -142,7 +143,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+# must be a tuple of a list. IMPORTANT: eed change a path to general static in production
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), '/Users/polinabelousova/PycharmProjects/reviewMe/reviewMe/static']
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
