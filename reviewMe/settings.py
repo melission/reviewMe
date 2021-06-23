@@ -146,7 +146,8 @@ STATIC_URL = '/static/'
 # collectstatic
 STATIC_ROOT = 'production_static'
 # must be a tuple of a list
-STATICFILES_DIRS = [BASE_DIR / 'static', '/Users/polinabelousova/PycharmProjects/reviewMe/reviewMe/static']
+STATICFILES_DIRS = [BASE_DIR / 'static',
+                    ("basic_static", '/Users/polinabelousova/PycharmProjects/reviewMe/reviewMe/static/reviewMe.basic.static/')]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
