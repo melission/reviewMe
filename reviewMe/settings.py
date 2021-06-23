@@ -144,7 +144,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # collectstatic
-STATIC_ROOT = BASE_DIR / 'production_static'
+STATIC_ROOT = 'production_static'
 # must be a tuple of a list
 STATICFILES_DIRS = [BASE_DIR / 'static', '/Users/polinabelousova/PycharmProjects/reviewMe/reviewMe/static']
 # Default primary key field type
