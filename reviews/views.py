@@ -27,6 +27,7 @@ def book_list_page(request):
                           'number_of_reviews': number_of_reviews,
                           'publisher': book.publisher,
                           'authors': contributors,
+                          'number_of_authors': len(contributors),
                           'id': book.id,
                           'date': book.published_at.year,
                           })
