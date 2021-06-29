@@ -9,12 +9,13 @@
 <body>
 {% block content %}
     {{ context }}
+    <p></p>
     <div class="row">
     {%  for book in book_list %}
         <div class="card mb-3" style="max-width: 540px; height: 300px">
   <div class="row g-0">
     <div class="col-md-4">
-        <img src="{% static 'basic_static/basic_book_cover.svg' %}" class="img-fluid text-center" alt="...">
+        <img src="{% static 'basic_static/basic_book_cover.svg' %}" class="img-fluid" alt="...">
     </div>
       <div class="col-md-8">
         <div class="card-body" style="height: 250px">
