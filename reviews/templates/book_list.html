@@ -20,7 +20,8 @@
         <div class="card-body" style="height: 250px">
         <h5 class="card-title" style="height: 50px">{{ book.book }}</h5>
             <div style="height: 75px">
-                <p>written by {{ book.number_of_authors }} {% for author in book.authors %} {{ author }}, {% endfor %}</p>
+              <p> {% if book.number_of_authors > 1 %} Authors: {% else %} Author: {% endif %}
+                  {% for author in book.authors %} {{ author }}, {% endfor %}</p>
             </div>
             <div style="height: 75px">
                 <p>published by {{ book.publisher }} in {{ book.date }},</p>
