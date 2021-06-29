@@ -1,4 +1,5 @@
 from django.db import models
+# import attr // doesn't work with models.Model
 
 
 # Create your models here.
@@ -12,11 +13,17 @@ class Movie(models.Model):
     actors = models.ManyToManyField('Actors', through='MovieActors')
     writers = models.ManyToManyField('Writers', through='MovieWriters')
 
+    def __str__(self):
+        return f'{self.title}'
+
 
 class Directors(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
 
 
 class MovieDirectors(models.Model):
@@ -28,11 +35,17 @@ class MovieDirectors(models.Model):
     role = models.CharField(choices=DirectorRole.choices,
                             max_length=20)
 
+    def __str__(self):
+        return f'{self.role} {self.director} in {self.movie}'
+
 
 class Actors(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
 
 
 class MovieActors(models.Model):
@@ -50,11 +63,17 @@ class MovieActors(models.Model):
                                          'for crowd seen actors use "other"',
                             max_length=20)
 
+    def __str__(self):
+        return f'{self.role} {self.actor} in {self.movie}'
+
 
 class Writers(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
 
 class MovieWriters(models.Model):
@@ -65,3 +84,6 @@ class MovieWriters(models.Model):
     writer = models.ForeignKey(Writers, on_delete=models.CASCADE)
     role = models.CharField(choices=WriterRole.choices,
                             max_length=20)
+
+    def __str__(self):
+        return f"{self.role} {self.writer} of {self.movie}"
