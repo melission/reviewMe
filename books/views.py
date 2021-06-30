@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from .models import *
+from .forms import ReviewForm
 
 
 # Create your views here.
@@ -17,8 +18,10 @@ def books_all(request):
 
 
 def detailed_book_view(request, id):
-    book = Book.objects.get(id=id)
-    return render(request, context={'book': book}, template_name='detailed_book_view.html')
+    if request.method == 'GET':
+        book = Book.objects.get(id=id)
+        form = ReviewForm()
+        return render(request, context={'book': book, 'form': form}, template_name='detailed_book_view.html')
 
 
 def book_search(request):
