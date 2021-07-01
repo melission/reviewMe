@@ -9,7 +9,10 @@
 <body>
 {% block content %}
     test {{ book.title }}
+    <form  method="post" action=""> {% csrf_token %}
+        <p>{{ form }}</p>
+    <button type="submit">Sent a review</button>
+    </form>
 {% endblock %}
-
 </body>
 </html>
