@@ -22,6 +22,13 @@ def detailed_book_view(request, id):
         book = Book.objects.get(id=id)
         form = ReviewForm()
         return render(request, context={'book': book, 'form': form}, template_name='detailed_book_view.html')
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        book = Book.objects.get(id=id)
+        if form.is_valid():
+            pass
+        print(form.cleaned_data)
+        return render(request, context={'book': book, 'form': form}, template_name='detailed_book_view.html')
 
 
 def book_search(request):
