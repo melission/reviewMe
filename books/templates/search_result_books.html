@@ -9,6 +9,13 @@
 <body>
 {% block content %}
 the search result for {{ search_phrase }}
+    <form action="/books/search/">
+    <div class="text-center">{{ form.search_phrase }}
+    <button class="btn btn-outline-dark" type="submit">Search</button>
+    </div>
+    <div class="text-center"> {% for item in form.search_in %} {{ item }} {% endfor %}
+    </div>
+    </form>
 {% endblock %}
 </body>
 </html>
