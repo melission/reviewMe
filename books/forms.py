@@ -14,4 +14,4 @@ choices = (('Book', 'Search a book'), ('Movie', 'Search a movie'), ('Contributor
 
 class SearchForm(forms.Form):
     search = forms.CharField(min_length=3)
-    search_in = forms.ChoiceField(choices=choices, widget=forms.RadioSelect)
+    search_in = forms.ChoiceField(choices=choices, widget=forms.RadioSelect, required=False)
