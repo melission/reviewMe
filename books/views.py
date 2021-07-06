@@ -42,6 +42,14 @@ def book_search(request):
             search_result = [Book.objects.get(title__icontains=search)]
         except Book.DoesNotExist:
             search_result = [f'There is no book with the name {search}']
+    elif search_in == 'Contributor':
+        try:
+            search_result = [Contributor.objects.get(last_name__contains=search)]
+        except Contributor.DoesNotExist:
+            try:
+                search_result = [Contributor.objects.get(first_name__contains=search)]
+            except Contributor.DoesNotExist:
+                search_result = [f'There is no author with the name {search}']
     return render(request, 'search_result_books.html',
                   {'form': form, 'search_phrase': search, 'search_result': search_result})
 
