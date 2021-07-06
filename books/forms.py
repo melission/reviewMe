@@ -9,7 +9,7 @@ class ReviewForm(ModelForm):
 
 
 
-choices = (('BOOK', 'Search a book'), ('Movie', 'Search a movie'), ('Contributor', 'Search an author'),
+choices = (('Book', 'Search a book'), ('Movie', 'Search a movie'), ('Contributor', 'Search an author'),
            ('Director', 'Search a director'))
 
 class SearchForm(forms.Form):
