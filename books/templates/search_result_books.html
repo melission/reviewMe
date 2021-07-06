@@ -15,6 +15,7 @@ the search result for {{ search_phrase }}
     </div>
     <div class="text-center"> {% for item in form.search_in %} {{ item }} {% endfor %}
     </div>
+    <div>{% for item in search_result %} {{ item }} {% endfor %}</div>
     </form>
 {% endblock %}
 </body>
