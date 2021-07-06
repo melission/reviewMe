@@ -34,5 +34,14 @@ def detailed_book_view(request, id):
 def book_search(request):
     # http://127.0.0.1:8000/books/search/?search_phrase=%27another%20good%20book%20to%20read%27
     search = request.GET.get("search_phrase") or 'one marvelous book'
-    return render(request, 'search_result_books.html', {'search_phrase': search})
+    form = SearchForm(request.GET)
+    search_in = request.GET.get('search_in')
+    search_result = []
+    if search_in == 'Book':
+        try:
+            search_result = Book.objects.get(title__icontains=search)
+        except Book.DoesNotExist:
+            search_result = [f'There is no book with the name {search}']
+    return render(request, 'search_result_books.html',
+                  {'form': form, 'search_phrase': search, 'search_result': search_result})
 
