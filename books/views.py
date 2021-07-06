@@ -39,7 +39,7 @@ def book_search(request):
     search_result = []
     if search_in == 'Book':
         try:
-            search_result = Book.objects.get(title__icontains=search)
+            search_result = [Book.objects.get(title__icontains=search)]
         except Book.DoesNotExist:
             search_result = [f'There is no book with the name {search}']
     return render(request, 'search_result_books.html',
