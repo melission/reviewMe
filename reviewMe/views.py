@@ -4,6 +4,7 @@ from django.db.models import Q
 from books.models import *
 from movies.models import *
 from templates import *
+from .forms import SearchForm
 
 
 def index(request):
