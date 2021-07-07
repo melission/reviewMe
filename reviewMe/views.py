@@ -30,10 +30,14 @@ def searchField(request):
     if search_in is None:
         pass
     elif search_in == 'Book':
-        try:
-            search_result.append([Book.objects.get(title__icontains=search)])
-        except Book.DoesNotExist:
-            search_result = [f'There is no book with the name {search}']
+        # try:
+        result = Book.objects.filter(title__icontains=search)
+        if len(result) > 0:
+            search_result = [x for x in result]
+        elif len(result) == 0:
+            search_result = [f'There is no book named {search}']
+        # except Book.DoesNotExist:
+        #     search_result = [f'There is no book with the name {search}']
     elif search_in == 'Contributor':
         # try:
         #     search_result.append([Contributor.objects.get(last_name__contains=search)])
@@ -44,11 +48,14 @@ def searchField(request):
         #     print(search_result)
         # except Contributor.DoesNotExist:
         #     search_result = [f'There is no author with the name {search}']
-        try:
-            result = Contributor.objects.filter(
-                Q(last_name__contains=search) | Q(first_name__contains=search))
+        # try:
+        result = Contributor.objects.filter(
+            Q(last_name__contains=search) | Q(first_name__contains=search))
+        if len(result) > 0:
             search_result = [x for x in result]
-        except Contributor.DoesNotExist:
-            search_result.append(f'There is no author named {search}')
+        elif len(result) == 0:
+            search_result = [f'There is no author named {search}']
+        # except Contributor.DoesNotExist:
+        #     search_result.append(f'There is no author named {search}')
     return render(request, 'search_result.html',
                   {'form': form, 'search_phrase': search, 'search_result': search_result})
