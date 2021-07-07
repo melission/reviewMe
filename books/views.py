@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import TemplateView
+from django.db.models import Q
 from .models import *
 from .forms import *
 
@@ -43,15 +44,21 @@ def book_search(request):
         except Book.DoesNotExist:
             search_result = [f'There is no book with the name {search}']
     elif search_in == 'Contributor':
+        # try:
+        #     search_result.append([Contributor.objects.get(last_name__contains=search)])
+        # except Contributor.DoesNotExist:
+        #     pass
+        # try:
+        #     search_result.append([Contributor.objects.get(first_name__contains=search)])
+        #     print(search_result)
+        # except Contributor.DoesNotExist:
+        #     search_result = [f'There is no author with the name {search}']
         try:
-            search_result.append([Contributor.objects.get(last_name__contains=search)])
+            search_result.append(Contributor.objects.filter(
+                Q(last_name__contains=search) | Q(first_name__contains=search))
+            )
         except Contributor.DoesNotExist:
-            pass
-        try:
-            search_result.append([Contributor.objects.get(first_name__contains=search)])
-            print(search_result)
-        except Contributor.DoesNotExist:
-            search_result = [f'There is no author with the name {search}']
+            search_result.append(f'There is no author named {search}')
     return render(request, 'search_result_books.html',
                   {'form': form, 'search_phrase': search, 'search_result': search_result})
 
