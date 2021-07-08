@@ -20,22 +20,42 @@ def index(request):
     return render(request, context={'message': massage}, template_name='index.html')
 
 
+def bookSearch(search):
+    book_found = Book.objects.filter(title__icontains=search)
+    return book_found
+
+def contribSearch(search):
+    author_found = Contributor.objects.filter(
+        Q(last_name__contains=search) | Q(first_name__contains=search))
+    return  author_found
+
+def movieSearch(search):
+    movie_found = Movie.objects.filter(title__icontains=search)
+    return movie_found
+
+def directorSearch(search):
+    directors_found = Directors.objects.filter(Q(last_name__contains=search) | Q(first_name__contains=search))
+    return directors_found
+
 def searchField(request):
     # http://127.0.0.1:8000/books/search/?search_phrase=%27another%20good%20book%20to%20read%27
     search = request.GET.get("search_phrase") or 'one marvelous book'
     form = SearchForm(request.GET)
     search_in = request.GET.get('search_in')
     result = []
-    print(f'search_in {search_in}')
+    # print(f'search_in {search_in}')
     search_result = []
     if search_in is None:
+        result = {}
+        # print(type(result))
         pass
     elif search_in == 'Book':
+        result = bookSearch(search)
         # try:
-        result = Book.objects.filter(title__icontains=search)
         # except Book.DoesNotExist:
         #     search_result = [f'There is no book with the name {search}']
     elif search_in == 'Contributor':
+        result = contribSearch(search)
         # try:
         #     search_result.append([Contributor.objects.get(last_name__contains=search)])
         # except Contributor.DoesNotExist:
@@ -46,14 +66,12 @@ def searchField(request):
         # except Contributor.DoesNotExist:
         #     search_result = [f'There is no author with the name {search}']
         # try:
-        result = Contributor.objects.filter(
-            Q(last_name__contains=search) | Q(first_name__contains=search))
         # except Contributor.DoesNotExist:
         #     search_result.append(f'There is no author named {search}')
     elif search_in == 'Movie':
-        result = Movie.objects.filter(title__icontains=search)
+        result = movieSearch(search)
     elif search_in == 'Director':
-        result = Directors.objects.filter(Q(last_name__contains=search) | Q(first_name__contains=search))
+        result = directorSearch(search)
     if len(result) > 0:
         search_result = [x for x in result]
     elif len(result) == 0:
