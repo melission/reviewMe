@@ -25,6 +25,7 @@ def searchField(request):
     search = request.GET.get("search_phrase") or 'one marvelous book'
     form = SearchForm(request.GET)
     search_in = request.GET.get('search_in')
+    result = []
     print(f'search_in {search_in}')
     search_result = []
     if search_in is None:
