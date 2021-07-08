@@ -47,7 +47,11 @@ def searchField(request):
     search_result = []
     if search_in is None:
         result = {}
-        # print(type(result))
+        result['books'] = bookSearch(search)
+        result['movies'] = movieSearch(search)
+        result['authors'] = contribSearch(search)
+        result['directors'] = directorSearch(search)
+        print(result)
         pass
     elif search_in == 'Book':
         result = bookSearch(search)
