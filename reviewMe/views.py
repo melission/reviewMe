@@ -24,18 +24,22 @@ def bookSearch(search):
     book_found = Book.objects.filter(title__icontains=search)
     return book_found
 
+
 def contribSearch(search):
     author_found = Contributor.objects.filter(
         Q(last_name__contains=search) | Q(first_name__contains=search))
-    return  author_found
+    return author_found
+
 
 def movieSearch(search):
     movie_found = Movie.objects.filter(title__icontains=search)
     return movie_found
 
+
 def directorSearch(search):
     directors_found = Directors.objects.filter(Q(last_name__contains=search) | Q(first_name__contains=search))
     return directors_found
+
 
 def searchField(request):
     # http://127.0.0.1:8000/books/search/?search_phrase=%27another%20good%20book%20to%20read%27
