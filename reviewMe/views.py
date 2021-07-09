@@ -46,23 +46,21 @@ def searchField(request):
     search = request.GET.get("search_phrase") or 'one marvelous book'
     form = SearchForm(request.GET)
     search_in = request.GET.get('search_in')
-    result = []
+    result = {}
     # print(f'search_in {search_in}')
-    search_result = []
+    search_result = {}
     if search_in is None:
-        result = {}
         result['books'] = bookSearch(search)
         result['movies'] = movieSearch(search)
         result['authors'] = contribSearch(search)
         result['directors'] = directorSearch(search)
         print(result)
-        pass
-    elif search_in == 'Book':
+    if search_in == 'Book':
         result = bookSearch(search)
         # try:
         # except Book.DoesNotExist:
         #     search_result = [f'There is no book with the name {search}']
-    elif search_in == 'Contributor':
+    if search_in == 'Contributor':
         result = contribSearch(search)
         # try:
         #     search_result.append([Contributor.objects.get(last_name__contains=search)])
@@ -76,13 +74,23 @@ def searchField(request):
         # try:
         # except Contributor.DoesNotExist:
         #     search_result.append(f'There is no author named {search}')
-    elif search_in == 'Movie':
+    if search_in == 'Movie':
         result = movieSearch(search)
-    elif search_in == 'Director':
+    if search_in == 'Director':
         result = directorSearch(search)
-    if len(result) > 0:
-        search_result = [x for x in result]
-    elif len(result) == 0:
-        search_result = [f'Nothing has been found on {search}']
+    print(result)
+    # for entry in result:
+    #     if result[entry] is None:
+    #         pass
+    #     else:
+    #         search_result[entry] = result[entry]
+
+    # if len(result) > 0:
+    #     search_result = [x for x in result]
+    # if len(result) > 0:
+    #     search_result = [x for x in result]
+    # elif len(result) == 0:
+    #     search_result[result] = [f'Nothing has been found on {search}']
+    print(search_result)
     return render(request, 'search_result.html',
-                  {'form': form, 'search_phrase': search, 'search_result': search_result})
+                  {'form': form, 'search_phrase': search, 'search_result': result})
