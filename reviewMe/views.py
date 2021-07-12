@@ -5,6 +5,7 @@ from books.models import *
 from movies.models import *
 from templates import *
 from .forms import SearchForm
+from itertools import chain
 
 
 def index(request):
@@ -46,22 +47,22 @@ def searchField(request):
     search = request.GET.get("search_phrase") or 'one marvelous book'
     form = SearchForm(request.GET)
     search_in = request.GET.get('search_in')
-    result = {}
+    search_result = []
     # print(f'search_in {search_in}')
-    search_result = {}
     if search_in is None:
-        result['books'] = bookSearch(search)
-        result['movies'] = movieSearch(search)
-        result['authors'] = contribSearch(search)
-        result['directors'] = directorSearch(search)
-        print(result)
+        books = bookSearch(search)
+        movies = movieSearch(search)
+        authors = contribSearch(search)
+        directors = directorSearch(search)
+        print(search_result)
+        search_result = list(chain(books, movies, authors, directors))
     if search_in == 'Book':
-        result = bookSearch(search)
+        search_result = bookSearch(search)
         # try:
         # except Book.DoesNotExist:
         #     search_result = [f'There is no book with the name {search}']
     if search_in == 'Contributor':
-        result = contribSearch(search)
+        search_result = contribSearch(search)
         # try:
         #     search_result.append([Contributor.objects.get(last_name__contains=search)])
         # except Contributor.DoesNotExist:
@@ -75,10 +76,23 @@ def searchField(request):
         # except Contributor.DoesNotExist:
         #     search_result.append(f'There is no author named {search}')
     if search_in == 'Movie':
-        result = movieSearch(search)
+        search_result = movieSearch(search)
     if search_in == 'Director':
-        result = directorSearch(search)
-    print(result)
+        search_result = directorSearch(search)
+    print(search_result)
+
+    # # if QuerySey is empty, key is saved with a str as value
+    # for key in result.keys():
+    #     # print(len(result[key].values()))
+    #     if len(result[key].values()) > 0:
+    #         # length = len(result[key].values())
+    #         # count = 0
+    #         search_result[key] = [value for value in result[key].values()]
+            # for value in result[key]:
+            #     search_result[count] = value
+            #     count+=1
+            #     print(value)
+
     # for entry in result:
     #     if result[entry] is None:
     #         pass
@@ -93,4 +107,4 @@ def searchField(request):
     #     search_result[result] = [f'Nothing has been found on {search}']
     print(search_result)
     return render(request, 'search_result.html',
-                  {'form': form, 'search_phrase': search, 'search_result': result})
+                  {'form': form, 'search_phrase': search, 'search_result': search_result})
