@@ -9,5 +9,5 @@ urlpatterns = [
     # path('rating/', book_list_page),
     path('', book_list_page),
     path('rating/', book_list_page),
-    path('rating/<int:id>/', detailed_book_view),
+    path('details/<int:id>/', detailed_book_view),
 ]
