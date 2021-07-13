@@ -17,7 +17,9 @@ the search result for {{ search_phrase }}
     </div>
     <ul class="list-group">
         {% for element in search_result %}
-            <li class="list-group-item"> {{ element }}</li>
+            <li class="list-group-item"> {{ element }}
+                <a class="btn btn-outline-dark" href="{{ element.get_absolute_url }}"> See more </a>
+            </li>
         {% endfor %}
     </ul>
     </form>
