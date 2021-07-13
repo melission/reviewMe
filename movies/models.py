@@ -16,6 +16,9 @@ class Movie(models.Model):
     def __str__(self):
         return f'{self.title}'
 
+    def get_absolute_url(self):
+        return "/movies/%i/" % self.id
+
 
 class Directors(models.Model):
     id = models.AutoField(primary_key=True)
