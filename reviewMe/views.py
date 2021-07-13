@@ -54,7 +54,7 @@ def searchField(request):
         movies = movieSearch(search)
         authors = contribSearch(search)
         directors = directorSearch(search)
-        print(search_result)
+        # print(search_result)
         search_result = list(chain(books, movies, authors, directors))
     if search_in == 'Book':
         search_result = bookSearch(search)
@@ -79,7 +79,7 @@ def searchField(request):
         search_result = movieSearch(search)
     if search_in == 'Director':
         search_result = directorSearch(search)
-    print(search_result)
+    # print(search_result)
 
     # # if QuerySey is empty, key is saved with a str as value
     # for key in result.keys():
