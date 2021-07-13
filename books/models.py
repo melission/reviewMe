@@ -39,6 +39,8 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return "/books/details/%i/" % self.id
 
 class Contributor(models.Model):
     """A contributor to a Book. Author, editor, etc.
