@@ -17,4 +17,4 @@ class SearchForm(forms.Form):
         clean_req = re.sub(r'[?|$|.|!]', r'', req)
         if clean_req != req:
             raise ValidationError(f'No special symbols allowed')
-        return clean_req
+        return req
