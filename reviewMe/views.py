@@ -44,10 +44,14 @@ def directorSearch(search):
 
 def searchField(request):
     # http://127.0.0.1:8000/books/search/?search_phrase=%27another%20good%20book%20to%20read%27
-    search = request.GET.get("search_phrase") or 'one marvelous book'
+    # search = request.GET.get("search_phrase") or 'one marvelous book'
     form = SearchForm(request.GET)
+    if form.is_valid():
+        # print(form.cleaned_data)
+        search = form.cleaned_data['search_phrase']
     search_in = request.GET.get('search_in')
     search_result = []
+    # print(f'search phrase is {search}')
     # print(f'search_in {search_in}')
     if search_in is None:
         books = bookSearch(search)
