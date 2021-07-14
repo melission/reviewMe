@@ -12,9 +12,13 @@ class SearchForm(forms.Form):
 
     # clean search phrase from special symbols
     def clean_search_phrase(self):
-        print('cleaning')
+        # print('cleaning')
         req = self.cleaned_data['search_phrase']
-        clean_req = re.sub(r'[?|$|.|!]', r'', req)
-        if clean_req != req:
-            raise ValidationError(f'No special symbols allowed')
+        clean_req = re.sub(r'[?|$|.|!|*|/|&|=|+]', r'', req)
+        # print('before if', clean_req)
+        if len(clean_req) != len(req):
+            # print('!=')
+            return clean_req
+        #     raise ValidationError(f'No special symbols allowed')
+        # print('==')
         return req
