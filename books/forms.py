@@ -1,12 +1,16 @@
-from django.forms import ModelForm
-from .models import Review
+from django import forms
+from .models import *
 
 
-class ReviewForm(ModelForm):
+class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['content', 'rating']
 
 
-
-
+class PublisherForm(forms.ModelForm):
+    class Meta:
+        model = Publisher
+        fields = '__all__'
+        # the same as fileds == '__all__
+        # exclude = ()
