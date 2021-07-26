@@ -1,6 +1,5 @@
 from django import forms
 from .models import *
-import attr
 
 
 class ReviewForm(forms.ModelForm):
@@ -14,5 +13,4 @@ class PublisherForm(forms.ModelForm):
     class Meta:
         model = Publisher
         fields = '__all__'
-        # the same as fields == '__all__
         # exclude = ()
