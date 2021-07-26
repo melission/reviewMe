@@ -8,7 +8,7 @@ from django.contrib import auth
 class Publisher(models.Model):
     """The company that publishing books.
     One to many relationship."""
-    id = models.IntegerField(primary_key=True)
+    id = models.IntegerField(primary_key=True, editable=False)
     name = models.CharField(max_length=64)
     website = models.URLField(help_text="Publisher's website")
 
@@ -19,7 +19,7 @@ class Publisher(models.Model):
 class Book(models.Model):
     """Many to many relationship. A book can be written by several contributors.
     A contributor can [help] create several books"""
-    id = models.IntegerField(primary_key=True)
+    id = models.IntegerField(primary_key=True, editable=False)
     title = models.CharField(max_length=64,
                              help_text='The title of the book', blank=False)
     # cover = models.ImageFiled()
@@ -45,7 +45,7 @@ class Book(models.Model):
 class Contributor(models.Model):
     """A contributor to a Book. Author, editor, etc.
     Many to many relationship (a contributor may create several books, a book can be written by several contributors"""
-    id = models.IntegerField(primary_key=True)
+    id = models.IntegerField(primary_key=True, editable=False)
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
 
@@ -72,7 +72,8 @@ class BookContributor(models.Model):
 class Review(models.Model):
     content = models.TextField(help_text='The review text.')
     rating = models.IntegerField(help_text='The rating the reviewer has given')
-    created_at = models.DateTimeField(auto_now_add=True, help_text='The date and time the review was created')
+    created_at = models.DateTimeField(auto_now_add=True, help_text='The date and time the review was created',
+                                      editable=False)
     edited_at = models.DateTimeField(null=True, help_text='The date and time the review was edited for the last time')
     creator = models.ForeignKey(auth.get_user_model(), on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE, help_text='The book the review for')
