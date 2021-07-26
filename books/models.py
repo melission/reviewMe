@@ -42,6 +42,7 @@ class Book(models.Model):
     def get_absolute_url(self):
         return "/books/details/%i/" % self.id
 
+
 class Contributor(models.Model):
     """A contributor to a Book. Author, editor, etc.
     Many to many relationship (a contributor may create several books, a book can be written by several contributors"""
