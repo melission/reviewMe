@@ -14,5 +14,5 @@ class PublisherForm(forms.ModelForm):
     class Meta:
         model = Publisher
         fields = '__all__'
-        # the same as fileds == '__all__
+        # the same as fields == '__all__
         # exclude = ()
