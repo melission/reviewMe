@@ -10,7 +10,7 @@ class Publisher(models.Model):
     One to many relationship."""
     id = models.IntegerField(primary_key=True, editable=False)
     name = models.CharField(max_length=64)
-    website = models.URLField(help_text="Publisher's website")
+    website = models.URLField(help_text="Publisher's website", blank=True)
 
     def __str__(self):
         return self.name
@@ -75,6 +75,7 @@ class Review(models.Model):
     rating = models.IntegerField(help_text='The rating the reviewer has given')
     created_at = models.DateTimeField(auto_now_add=True, help_text='The date and time the review was created',
                                       editable=False)
-    edited_at = models.DateTimeField(null=True, help_text='The date and time the review was edited for the last time')
+    edited_at = models.DateTimeField(null=True, help_text='The date and time the review was edited for the last time',
+                                     editable=False)
     creator = models.ForeignKey(auth.get_user_model(), on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE, help_text='The book the review for')
