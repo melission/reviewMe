@@ -10,4 +10,6 @@ urlpatterns = [
     path('', book_list_page),
     path('rating/', book_list_page),
     path('details/<int:id>/', detailed_book_view),
+    path('publishers/<int:p_id>/', publisher_edit, name='publisher_edit'),
+    path('publishers/new/', publisher_edit, name='publisher_create'),
 ]
