@@ -54,11 +54,10 @@ def publisher_edit(request, p_id=None):
         if form.is_valid():
             updated_publisher = form.save()
             pub = Publisher.objects.get(name=updated_publisher)
-            # print(updated_publisher.id)
             if publisher is None:
-                messages.success(request, f'Publisher {updated_publisher} was created.')
+                messages.success(request, f'Publisher {updated_publisher.name} was created.')
             else:
-                messages.success(request, f'Publisher {updated_publisher} was updated.')
+                messages.success(request, f'Publisher {updated_publisher.name} was updated.')
 
             return redirect("publisher_edit", pub.id)
     else:
