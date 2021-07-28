@@ -9,10 +9,21 @@
 <body>
 {% block content %}
     <p></p>
+    {% if messages %}
+        {%  for message in messages %}
+            {% if message.level_tag == 'success' %}
+                    <div class="d-flex justify-content-center">
+                <div class="alert alert-success" role="alert"> {{ message }} </div>
+                    </div>
+            {% endif %}
+            {% if message.level_tag == 'info' %}
+                <div class="d-flex justify-content-center">
+                    <div class="alert alert-primary" role="alert"> {{ message }} </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
     <div class="row justify-content-center">
-    {%  for message in messages %}
-    <p style="text-align: center"><em>{{ message.level_tag|title }}:</em> {{ message }}</p>
-    {% endfor %}
     <div class="card mb-8" style="max-width: 600px">
         <div class="card-body">
         <form action="" method="post"> {% csrf_token %}
