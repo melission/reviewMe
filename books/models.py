@@ -10,7 +10,7 @@ class Publisher(models.Model):
     One to many relationship."""
     id = models.IntegerField(primary_key=True, editable=False)
     name = models.CharField(max_length=64)
-    website = models.URLField(help_text="Publisher's website", blank=True)
+    website = models.URLField(blank=True)
 
     def __str__(self):
         return self.name
