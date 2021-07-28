@@ -55,13 +55,13 @@ def publisher_edit(request, p_id=None):
             updated_publisher = form.save(False)
             try:
                 pub = Publisher.objects.get(name=updated_publisher.name)
+                messages.info(request, f'Publisher {updated_publisher.name} already exists.')
             except Publisher.DoesNotExist:
                 updated_publisher = form.save()
                 pub = Publisher.objects.get(name=updated_publisher.name)
-            if publisher is None:
                 messages.success(request, f'Publisher {updated_publisher.name} was created.')
-            else:
-                messages.success(request, f'Publisher {updated_publisher.name} was updated.')
+            # if publisher is not None:
+            #     messages.success(request, f'Publisher {updated_publisher.name} was updated.')
 
             return redirect("publisher_edit", pub.id)
     else:
