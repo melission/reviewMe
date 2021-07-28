@@ -52,8 +52,12 @@ def publisher_edit(request, p_id=None):
         form = PublisherForm(request.POST, instance=publisher)
         # print(form)
         if form.is_valid():
-            updated_publisher = form.save()
-            pub = Publisher.objects.get(name=updated_publisher)
+            updated_publisher = form.save(False)
+            try:
+                pub = Publisher.objects.get(name=updated_publisher.name)
+            except Publisher.DoesNotExist:
+                updated_publisher = form.save()
+                pub = Publisher.objects.get(name=updated_publisher.name)
             if publisher is None:
                 messages.success(request, f'Publisher {updated_publisher.name} was created.')
             else:
