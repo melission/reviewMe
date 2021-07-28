@@ -13,8 +13,9 @@
     {% endfor %}
     <form action="" method="post"> {% csrf_token %}
         {{ form.as_p }}
-    <p><input type="submit" value="Submit"></p>
+    <p><input class="btn btn-outline-success" type="submit" value="Submit"></p>
     </form>
+    <a class="btn btn-outline-dark" href="/books/publishers/new/">Add a new publisher</a>
 {% endblock %}
 </body>
 </html>
