@@ -9,7 +9,7 @@ class Publisher(models.Model):
     """The company that publishing books.
     One to many relationship."""
     id = models.IntegerField(primary_key=True, editable=False)
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, unique=True)
     website = models.URLField(help_text="Publisher's website", blank=True)
 
     def __str__(self):
