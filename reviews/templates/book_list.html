@@ -10,6 +10,10 @@
 {% block content %}
     {{ context }}
     <p></p>
+    <div class="d-flex justify-content-center">
+        <a href="/books/publishers/new" class="btn btn-outline-dark" type="submit">Add a new publisher</a>
+    </div>
+    <p></p>
     <div class="row justify-content-center">
     {%  for book in book_list %}
         <div class="card mb-3" style="max-width: 540px; height: 300px">
