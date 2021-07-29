@@ -47,7 +47,7 @@ def publisher_edit(request, p_id=None):
     else:
         publisher = None
 
-    # creates a new Publisher or gets existing one
+    # creates a new Publisher or gets an existing one
     if request.method == 'POST':
         form = PublisherForm(request.POST, instance=publisher)
         # print(form)
@@ -67,4 +67,4 @@ def publisher_edit(request, p_id=None):
     else:
         form = PublisherForm(instance=publisher)
 
-    return render(request, 'publisher_edit.html', {'method': request.method, 'form': form})
+    return render(request, 'publisher_edit.html', {'method': request.method, 'form': form, 'instance': publisher})
