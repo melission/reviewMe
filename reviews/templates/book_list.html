@@ -9,11 +9,11 @@
 <body>
 {% block content %}
     {{ context }}
-    <p></p>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex flex-row justify-content-center flex-wrap" style="height: 100px">
+        <div class="d-flex align-items-center">
         <a href="/books/publishers/new" class="btn btn-outline-dark" type="submit">Add a new publisher</a>
+        </div>
     </div>
-    <p></p>
     <div class="row justify-content-center">
     {%  for book in book_list %}
         <div class="card mb-3" style="max-width: 540px; height: 300px">
