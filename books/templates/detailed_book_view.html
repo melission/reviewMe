@@ -8,11 +8,24 @@
 </head>
 <body>
 {% block content %}
-    test {{ book.title }}
-    <form  method="post" action=""> {% csrf_token %}
+    <div class="row justify-content-center">
+    <div class="col-md-4 align-self-center">
+        <img src="{% static 'basic_static/basic_book_cover.svg' %}" class="img-fluid" alt="...">
+    </div>
+    <div class="card" style="width: 400px; height: 400px">
+    <div class="card-header" style="height: 50px">{{ book.title }}</div>
+    <div class="card-body" style="height: 50px"> Written by: {% for contributor in contributors %} {{ contributor }}
+        {% endfor %}</div>
+    <div class="card-body" style="height: 50px"> Published by: {{ publisher }} in {{ published_at }}</div>
+    <div class="card-body" style="height: 200px">Description: {{ description }}</div>
+    </div>
+    </div>
+    <div class="row justify-content-center">
+    <form method="post" action=""> {% csrf_token %}
         <p>{{ form.as_p }}</p>
-    <button type="submit">Sent a review</button>
+    <button class="btn btn-outline-dark" type="submit">Sent a review</button>
     </form>
+    </div>
 {% endblock %}
 </body>
 </html>
