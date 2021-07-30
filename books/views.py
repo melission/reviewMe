@@ -15,32 +15,36 @@ def books_all(request):
                                             'book_list': book_list},
                   template_name='books.html')
 
+
 # class BookHomePage(TemplateView):
 #     template_name = 'books.html'
 
 
 def detailed_book_view(request, id):
-
+    form = ReviewForm()
+    book = Book.objects.get(id=id)
+    contributors = book.contributors.filter(
+        Q(bookcontributor__role='AUTHOR') | Q(bookcontributor__role='CO_AUTHOR')
+    )
+    context = {'book': book, 'form': form, 'contributors': contributors,
+               "description": book.description, "publisher": book.publisher, "published_at": book.published_at}
     # get a book based on id
     if request.method == 'GET':
-        book = Book.objects.get(id=id)
-        form = ReviewForm()
-        return render(request, context={'book': book, 'form': form}, template_name='detailed_book_view.html')
+        return render(request, context=context,
+                      template_name='detailed_book_view.html')
 
     # add a review
     if request.method == 'POST':
         form = ReviewForm(request.POST)
-        book = Book.objects.get(id=id)
         if form.is_valid():
             pass
         print(form.cleaned_data)
-        return render(request, context={'book': book, 'form': form}, template_name='detailed_book_view.html')
+        return render(request, context=context, template_name='detailed_book_view.html')
 
 
 # a function that gets a request and either saves data to a new publisher, or retrieves due to p_id an existing one
 # p_id is an optional argument; if p_id is None, a new Publisher will be created
 def publisher_edit(request, p_id=None):
-
     # trys to retrieve an existing Publisher based on p_id
     if p_id is not None:
         publisher = get_object_or_404(Publisher, id=p_id)
