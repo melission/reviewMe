@@ -7,7 +7,7 @@ choices = (('Book', 'Search a book'), ('Movie', 'Search a movie'), ('Contributor
 
 
 class SearchForm(forms.Form):
-    search_phrase = forms.CharField(min_length=3)
+    search_phrase = forms.CharField(min_length=1)
     search_in = forms.ChoiceField(choices=choices, widget=forms.RadioSelect, required=False)
 
     # clean search phrase from special symbols
@@ -16,6 +16,8 @@ class SearchForm(forms.Form):
         req = self.cleaned_data['search_phrase']
         clean_req = re.sub(r'[?|$|.|!|*|/|&|=|+]', r'', req)
         # print('before if', clean_req)
+        # if len(clean_req) == 0:
+        #     raise ValidationError('At least one letter is required.')
         if len(clean_req) != len(req):
             # print('!=')
             return clean_req
