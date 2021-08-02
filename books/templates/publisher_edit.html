@@ -15,6 +15,9 @@
                 <div class="d-flex justify-content-center">
                     <div class="alert alert-success" role="alert"> {{ message }} </div>
                 </div>
+                <div class="d-flex justify-content-center" style="height: 50px">
+                    <b> You can edit the publisher <i>{{ instance }} </i> now.</b>
+                </div>
             {% endif %}
             {% if message.level_tag == 'info' %}
                 <div class="d-flex justify-content-center">
@@ -50,8 +53,7 @@
             </table>
             <p><input class="btn btn-outline-success" type="submit" value="Submit"></p>
             </form>
-            <a class="btn btn-outline-dark justify-content-center" href="/books/publishers/new/">
-            Refresh and add a new publisher</a>
+            <a class="btn btn-outline-dark justify-content-center" href="/books/publishers/new/">Add a new publisher</a>
             </div>
         </div>
     </div>
