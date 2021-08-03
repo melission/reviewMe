@@ -9,18 +9,18 @@ from reviews.utils import average_rating
 
 
 # Create your views here.
-def books_all(request):
-    book_count = Book.objects.count()
-    book_list = Book.objects.all()
-    return render(request=request, context={'context': f"there are {book_count} books have being found",
-                                            'book_list': book_list},
-                  template_name='books.html')
+# def books_all(request):
+#     book_count = Book.objects.count()
+#     book_list = Book.objects.all()
+#     return render(request=request, context={'context': f"there are {book_count} books have being found",
+#                                             'book_list': book_list},
+#                   template_name='books.html')
 
 
 # class BookHomePage(TemplateView):
 #     template_name = 'books.html'
 
-
+# path /books/details/<int:id>
 def detailed_book_view(request, id):
     form = ReviewForm()
     book = Book.objects.get(id=id)
@@ -77,6 +77,7 @@ def book_list_page(request):
     return render(request, 'book_list.html', context=context)
 
 
+# path /books/publishers/new or /books/publishers/<int:p_id>
 # a function that gets a request and either saves data to a new publisher, or retrieves due to p_id an existing one
 # p_id is an optional argument; if p_id is None, a new Publisher will be created
 def publisher_edit(request, p_id=None):
