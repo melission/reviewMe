@@ -39,7 +39,7 @@ def detailed_book_view(request, id):
         form = ReviewForm(request.POST)
         if form.is_valid():
             pass
-        print(form.cleaned_data)
+        # print(form.cleaned_data)
         return render(request, context=context, template_name='detailed_book_view.html')
 
 

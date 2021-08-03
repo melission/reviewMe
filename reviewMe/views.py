@@ -113,6 +113,6 @@ def searchField(request):
         #     search_result = [x for x in result]
         # elif len(result) == 0:
         #     search_result[result] = [f'Nothing has been found on {search}']
-        print(search_result)
+        # print(search_result)
         return render(request, 'search_result.html',
                       {'form': form, 'search_phrase': search, 'search_result': search_result})
