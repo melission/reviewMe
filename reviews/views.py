@@ -1,35 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
+from books.forms import ReviewForm
 from books.models import Book, Review, BookContributor
 from .utils import average_rating
 # Create your views here.
 
 
-def book_list_page(request):
-    books = Book.objects.all()
-    book_list = []
-    for book in books:
-        reviews = Review.objects.all()
-        authors = []
-        contributors = book.contributors.filter(Q(bookcontributor__role='AUTHOR') | Q(bookcontributor__role='CO_AUTHOR'))
-        # for i in range(len(contributors)):
-        #     author = contributors[i]
-        #     authors.append(author)
+def review_edit(request, book_id, review_id=None):
+    book = get_object_or_404(Book, id=book_id)
+    if review_id is None:
+        review = None
+    else:
+        review = get_object_or_404(Review, id=review_id)
 
-        if reviews:
-            book_rating = average_rating([review.rating for review in reviews])
-            number_of_reviews = len(reviews)
-        else:
-            book_rating = None
-            number_of_reviews = 0
-        book_list.append({'book': book,
-                          'book_rating': book_rating,
-                          'number_of_reviews': number_of_reviews,
-                          'publisher': book.publisher,
-                          'authors': contributors,
-                          'number_of_authors': len(contributors),
-                          'id': book.id,
-                          'date': book.published_at.year,
-                          })
-    context = {'book_list': book_list}
-    return render(request, 'book_list.html', context=context)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+
