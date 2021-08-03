@@ -1,6 +1,6 @@
 from django import forms
 from .models import *
-# from reviews.models import Review
+from reviews.models import Review
 
 
 class ReviewForm(forms.ModelForm):
@@ -10,6 +10,7 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ['content', 'rating']
         widgets = {'content': forms.Textarea(attrs={'placeholder': 'Write your review here'})}
+    rating = forms.IntegerField(min_value=0, max_value=5)
 
 
 class PublisherForm(forms.ModelForm):
@@ -17,7 +18,6 @@ class PublisherForm(forms.ModelForm):
         model = Publisher
         fields = '__all__'
         # exclude = ()
-    rating = forms.IntegerField(min_value=0, max_value=5)
 
     # capitalise if not
     def clean_name(self):
