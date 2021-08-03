@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from django.db.models import Q
 from .models import *
 from .forms import *
+from reviews.utils import average_rating
 
 
 # Create your views here.
@@ -40,6 +41,40 @@ def detailed_book_view(request, id):
             pass
         print(form.cleaned_data)
         return render(request, context=context, template_name='detailed_book_view.html')
+
+
+# path /books/
+# show every single book
+def book_list_page(request):
+    books = Book.objects.all()
+    book_list = []
+    for book in books:
+        reviews = Review.objects.all()
+        authors = []
+        contributors = book.contributors.filter(
+            Q(bookcontributor__role='AUTHOR') | Q(bookcontributor__role='CO_AUTHOR')
+        )
+        # for i in range(len(contributors)):
+        #     author = contributors[i]
+        #     authors.append(author)
+
+        if reviews:
+            book_rating = average_rating([review.rating for review in reviews])
+            number_of_reviews = len(reviews)
+        else:
+            book_rating = None
+            number_of_reviews = 0
+        book_list.append({'book': book,
+                          'book_rating': book_rating,
+                          'number_of_reviews': number_of_reviews,
+                          'publisher': book.publisher,
+                          'authors': contributors,
+                          'number_of_authors': len(contributors),
+                          'id': book.id,
+                          'date': book.published_at.year,
+                          })
+    context = {'book_list': book_list}
+    return render(request, 'book_list.html', context=context)
 
 
 # a function that gets a request and either saves data to a new publisher, or retrieves due to p_id an existing one
