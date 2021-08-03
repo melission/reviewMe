@@ -18,6 +18,7 @@ class PublisherForm(forms.ModelForm):
         fields = '__all__'
         # exclude = ()
     rating = forms.IntegerField(min_value=0, max_value=5)
+
     # capitalise if not
     def clean_name(self):
         cap_name = self.cleaned_data['name']
