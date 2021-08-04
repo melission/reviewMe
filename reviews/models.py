@@ -5,6 +5,7 @@ from books.models import Book
 
 
 class ReviewBook(models.Model):
+    review_id = models.IntegerField(primary_key=True, editable=False)
     content = models.TextField(help_text='The review text.')
     rating = models.IntegerField(help_text='The rating the reviewer has given')
     created_at = models.DateTimeField(auto_now_add=True, help_text='The date and time the review was created',
