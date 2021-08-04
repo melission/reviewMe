@@ -9,7 +9,7 @@ urlpatterns = [
     # path('rating/', book_list_page),
     path('', book_list_page),
     path('rating/', book_list_page),
-    path('details/<int:id>/', detailed_book_view),
+    path('details/<int:id>/', detailed_book_view, name='book_detailed'),
     path('details/<int:id>/add_review/', book_review_edit),
     path('publishers/<int:p_id>/', publisher_edit, name='publisher_edit'),
     path('publishers/new/', publisher_edit, name='publisher_create'),
