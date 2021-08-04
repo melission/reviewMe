@@ -10,4 +10,4 @@ class ReviewBookForm(forms.ModelForm):
         exclude = ['edited_at']
         # fields = ['content', 'rating']
         widgets = {'content': forms.Textarea(attrs={'placeholder': 'Write your review here'})}
-    rating = forms.IntegerField(min_value=0, max_value=5)
+    rating = forms.IntegerField(min_value=1, max_value=5)
