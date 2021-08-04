@@ -5,6 +5,8 @@ from django.views.generic import TemplateView
 from django.db.models import Q
 from .models import *
 from .forms import *
+from reviews.models import ReviewBook
+from reviews.forms import ReviewBookForm
 from reviews.utils import average_rating
 
 
@@ -22,12 +24,12 @@ from reviews.utils import average_rating
 
 # path /books/details/<int:id>
 def detailed_book_view(request, id):
-    form = ReviewForm()
+    form = ReviewBookForm()
     book = Book.objects.get(id=id)
     contributors = book.contributors.filter(
         Q(bookcontributor__role='AUTHOR') | Q(bookcontributor__role='CO_AUTHOR')
     )
-    context = {'book': book, 'form': form, 'contributors': contributors,
+    context = {'book': book, 'id': id, 'form': form, 'contributors': contributors,
                "description": book.description, "publisher": book.publisher, "published_at": book.published_at}
     # get a book based on id
     if request.method == 'GET':
@@ -35,12 +37,12 @@ def detailed_book_view(request, id):
                       template_name='detailed_book_view.html')
 
     # add a review
-    if request.method == 'POST':
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            pass
+    # if request.method == 'POST':
+    #     form = ReviewBookForm(request.POST)
+    #     if form.is_valid():
+    #         pass
         # print(form.cleaned_data)
-        return render(request, context=context, template_name='detailed_book_view.html')
+        # return render(request, context=context, template_name='detailed_book_view.html')
 
 
 # path /books/
@@ -49,7 +51,7 @@ def book_list_page(request):
     books = Book.objects.all()
     book_list = []
     for book in books:
-        reviews = Review.objects.all()
+        reviews = ReviewBook.objects.all()
         authors = []
         contributors = book.contributors.filter(
             Q(bookcontributor__role='AUTHOR') | Q(bookcontributor__role='CO_AUTHOR')
