@@ -21,9 +21,9 @@
     </div>
     </div>
     <div class="row justify-content-center">
-    <form method="post" action=""> {% csrf_token %}
+    <form method="post" action="/books/details/{{ id }}/add_review/"> {% csrf_token %}
         <p>{{ form.as_p }}</p>
-    <button class="btn btn-outline-dark" type="submit">Sent a review</button>
+    <button class="btn btn-outline-dark" type="submit" >Send a review</button>
     </form>
     </div>
 {% endblock %}
