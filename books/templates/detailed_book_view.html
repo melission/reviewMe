@@ -20,11 +20,12 @@
     <div class="card-body" style="height: 200px">Description: {{ description }}</div>
     </div>
     </div>
-    <div class="row justify-content-center">
-    <form method="post" action="/books/details/{{ id }}/add_review/"> {% csrf_token %}
-        <p>{{ form.as_p }}</p>
-    <button class="btn btn-outline-dark" type="submit" >Send a review</button>
-    </form>
+    <div class="d-flex">
+        <a href="/books/details/{{ id }}/add_review/" class="btn btn-outline-dark"> Add review </a>
+{#    <form method="post" action="/books/details/{{ id }}/add_review/"> {% csrf_token %}#}
+{#        <p>{{ form.as_p }}</p>#}
+{#    <button class="btn btn-outline-dark" type="submit" >Send a review</button>#}
+{#    </form>#}
     </div>
 {% endblock %}
 </body>
