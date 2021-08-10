@@ -1,9 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from django.db.models import Q
 from .models import ReviewBook
 from reviews.forms import ReviewBookForm
-from books.models import Book, BookContributor
+from books.models import Book
 from django.utils.timezone import now
 # Create your views here.
 
@@ -25,7 +24,6 @@ def book_review_edit(request, id, review_id=None):
             if review_id is not None:
                 review.edited_at = now()
             review.book = book
-            print(review.book)
             review.save()
             if review_id is None:
                 messages.success(request, f"Your review has been published.")
