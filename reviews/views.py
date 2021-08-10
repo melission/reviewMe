@@ -4,6 +4,7 @@ from django.db.models import Q
 from .models import ReviewBook
 from reviews.forms import ReviewBookForm
 from books.models import Book, BookContributor
+from django.utils.timezone import now
 # Create your views here.
 
 
@@ -21,6 +22,8 @@ def book_review_edit(request, id, review_id=None):
         form = ReviewBookForm(request.POST, instance=edit_review)
         if form.is_valid():
             review = form.save(False)
+            if review_id is not None:
+                review.edited_at = now()
             review.book = book
             print(review.book)
             review.save()
