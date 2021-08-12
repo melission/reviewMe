@@ -51,7 +51,7 @@ def book_list_page(request):
     books = Book.objects.all()
     book_list = []
     for book in books:
-        reviews = ReviewBook.objects.all()
+        reviews = ReviewBook.objects.filter(book_id=book.id)
         authors = []
         contributors = book.contributors.filter(
             Q(bookcontributor__role='AUTHOR') | Q(bookcontributor__role='CO_AUTHOR')
