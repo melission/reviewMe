@@ -9,10 +9,28 @@
 </head>
 <body>
 {% block content %}
-<p>Overall there are {{ movie_amount }} of movies!</p>
-<p>{% for movie in movie_list %}
-    {{ movie }}
-{% endfor %}</p>
+        <div class="row justify-content-center">
+{% for movie in movie_list %}
+<div class="card mb-3" style="max-width: 540px; height: 400px">
+  <div class="row g-0">
+    <div class="col-md-4 align-self-center">
+        <img src="{% static 'basic_static/basic_movie_cover.svg' %}" class="img-fluid" alt="...">
+    </div>
+      <div class="col-md-8">
+          <div class="card-title fs-5 fw-bold" style="height: 50px; margin: 2px">{{ movie.title }}</div>
+          <div class="card-body" style="height: 250px">
+              <div style="height: 50px">Cast: {% for actor in movie.actors %} {{ actor }}, {% endfor %}</div>
+          <div style="height: 50px">Directed by: {% for director in movie.directors %} {{ director }}, {% endfor %}</div>
+              <div style="height: 50px">Written by: {% for writer in movie.writers %} {{ writer }}, {% endfor %}</div>
+          <div style="height: 100px">Description: {{ movie.description }}</div>
+          </div>
+          <a class="card-footer btn btn-outline-dark" style="vertical-align: bottom"
+             href="/movies/details/{{movie.id}}" type="submit">See details</a>
+      </div>
+  </div>
+</div>
+    {% endfor %}
+        </div>
 {% endblock %}
 </body>
 </html>
