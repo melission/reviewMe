@@ -22,7 +22,7 @@
               <div style="height: 50px">Cast: {% for actor in movie.actors %} {{ actor }}, {% endfor %}</div>
           <div style="height: 50px">Directed by: {% for director in movie.directors %} {{ director }}, {% endfor %}</div>
               <div style="height: 50px">Written by: {% for writer in movie.writers %} {{ writer }}, {% endfor %}</div>
-          <div style="height: 100px">Description: {{ movie.description }}</div>
+          <div style="height: 150px">Description: {{ movie.description }}</div>
           </div>
           <a class="card-footer btn btn-outline-dark" style="vertical-align: bottom"
              href="/movies/details/{{movie.id}}" type="submit">See details</a>
