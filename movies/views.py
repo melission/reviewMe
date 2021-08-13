@@ -23,6 +23,7 @@ def movies_all(request):
     return render(request, 'movie_list.html',
                   context={'movie_list': movie_list})
 
+
 def detailed_movie(request, id):
     movie = Movie.objects.get(id=id)
     return render(request, 'detailed_movie.html', context={'movie': movie})
