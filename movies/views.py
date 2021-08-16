@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import *
+from .forms import *
 from django.db.models import Q
 from django.http import HttpResponse
+from django.contrib import messages
 
 
 # Create your views here.
@@ -36,3 +38,30 @@ def movies_all(request):
 def detailed_movie(request, id):
     movie = Movie.objects.get(id=id)
     return render(request, 'detailed_movie.html', context={'movie': movie})
+
+
+def add_person(request):
+    if request.method == 'GET':
+        print(request.GET)
+        model_name = request.GET['model_name']
+        if model_name == 'actor':
+            form = AddActorForm()
+
+        if model_name == 'writer':
+            pass
+
+        if model_name == 'director':
+            pass
+        return render(request, 'add_person.html', context={'form': form, 'model_name': model_name})
+    if request.method == 'POST':
+        print(request.POST)
+        model_name = request.POST['model_name']
+        print(f'model name {model_name}')
+        if model_name == 'actor':
+            form = AddActorForm(request.POST)
+            print(form)
+        if form.is_valid():
+            actor = form.save()
+            messages.success(request, 'An actor has been successfully added')
+        return render(request, 'add_person.html', context={'form': form, 'model_name': model_name})
+
