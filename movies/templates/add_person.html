@@ -8,7 +8,25 @@
 </head>
 <body>
 {% block content %}
+    <div class="row justify-content-center">
+    {% if messages %} {% for message in messages %} {{ message }} {% endfor %} {% endif %}
+    </div>
+    <div class="d-flex justify-content-center" style="vertical-align: center">
+    <form method="post" action=""> {% csrf_token %}
+        <div class="row justify-content-center fs-5 fst-italic fw-bold" style="margin: 10px">
+            {% if model_name == 'actor' %}
+                <input type="hidden" name='model_name' value="actor">
+                Creating an actor {% endif %}
+        </div>
+        {{ form.as_p }}
+        <button class="btn btn-outline-dark" type="submit">Add</button>
 
+    </form>
+    </div>
+    <div class="container-fluid justify-content-center">
+        <a class="btn btn-outline-dark" href="/movies/add_person/?model_name=actor" type="submit">
+        Create another actor or actress</a>
+    </div>
 {% endblock %}
 </body>
 </html>
