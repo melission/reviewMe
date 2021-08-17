@@ -42,7 +42,7 @@ def detailed_movie(request, id):
 
 def add_person(request):
     if request.method == 'GET':
-        print(request.GET)
+        # print(request.GET)
         model_name = request.GET['model_name']
         if model_name == 'actor':
             form = AddActorForm()
@@ -55,9 +55,9 @@ def add_person(request):
 
         return render(request, 'add_person.html', context={'form': form, 'model_name': model_name})
     if request.method == 'POST':
-        print(request.POST)
+        # print(request.POST)
         model_name = request.POST['model_name']
-        print(f'model name {model_name}')
+        # print(f'model name {model_name}')
         if model_name == 'actor':
             form = AddActorForm(request.POST)
 
