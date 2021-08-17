@@ -48,10 +48,11 @@ def add_person(request):
             form = AddActorForm()
 
         if model_name == 'writer':
-            pass
+            form = AddDirectorForm()
 
         if model_name == 'director':
-            pass
+            form = AddWriterForm()
+
         return render(request, 'add_person.html', context={'form': form, 'model_name': model_name})
     if request.method == 'POST':
         print(request.POST)
@@ -59,9 +60,15 @@ def add_person(request):
         print(f'model name {model_name}')
         if model_name == 'actor':
             form = AddActorForm(request.POST)
-            print(form)
+
+        if model_name == 'director':
+            form = AddDirectorForm(request.POST)
+
+        if model_name == 'writer':
+            form = AddWriterForm(request.POST)
+
         if form.is_valid():
-            actor = form.save()
-            messages.success(request, 'An actor has been successfully added')
+            saved_form = form.save()
+            messages.success(request, f' {saved_form.first_name} {saved_form.last_name} has been successfully added')
         return render(request, 'add_person.html', context={'form': form, 'model_name': model_name})
 
