@@ -32,3 +32,19 @@ class AddDirectorForm(forms.ModelForm):
         first_name = self.cleaned_data['first_name']
         first_name = first_name.title()
         return first_name
+
+
+class AddWriterForm(forms.ModelForm):
+    class Meta:
+        model = Writers
+        fields = '__all__'
+
+    def clean_last_name(self):
+        last_name = self.cleaned_data['last_name']
+        last_name = last_name.title()
+        return last_name
+
+    def clean_first_name(self):
+        first_name = self.cleaned_data['first_name']
+        first_name = first_name.title()
+        return first_name
