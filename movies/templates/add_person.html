@@ -17,6 +17,14 @@
             {% if model_name == 'actor' %}
                 <input type="hidden" name='model_name' value="actor">
                 Creating an actor {% endif %}
+            {% if model_name == 'director' %}
+                <input type="hidden" name='model_name' value="director">
+                Creating a director
+            {% endif %}
+            {% if model_name == 'writer' %}
+            <input type="hidden" name='model_name' value="writer">
+            Creating a writer
+            {% endif %}
         </div>
         {{ form.as_p }}
         <button class="btn btn-outline-dark" type="submit">Add</button>
@@ -26,6 +34,10 @@
     <div class="container-fluid justify-content-center">
         <a class="btn btn-outline-dark" href="/movies/add_person/?model_name=actor" type="submit">
         Create another actor or actress</a>
+    <a class="btn btn-outline-dark" href="/movies/add_person/?model_name=director" type="submit">
+        Create a director</a>
+        <a class="btn btn-outline-dark" href="/movies/add_person/?model_name=writer" type="submit">
+        Create a writer</a>
     </div>
 {% endblock %}
 </body>
