@@ -31,11 +31,9 @@
     {% if reviews %}
         {% for review in reviews %}
     <div class="card" style="margin: 1%; width: 19%">
-        <div class="card-header"> {{ review.rating }}
-            <div class="card-body"> {{ review.content }}
-                <div class="card-footer"> {{ review.creator }}
-                </div>
-            </div>
+        <div class="card-header"> {{ review.rating }}</div>
+            <div class="card-body"> {{ review.content }}</div>
+                <div class="card-footer text-muted" style=""> {{ review.creator }}
         </div>
     </div>
     {% endfor %}
