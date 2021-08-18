@@ -29,8 +29,12 @@ def detailed_book_view(request, id):
     contributors = book.contributors.filter(
         Q(bookcontributor__role='AUTHOR') | Q(bookcontributor__role='CO_AUTHOR')
     )
+    reviews = ReviewBook.objects.filter(book_id=book.id).order_by('-created_at')[:5]
     context = {'book': book, 'id': id, 'form': form, 'contributors': contributors,
-               "description": book.description, "publisher": book.publisher, "published_at": book.published_at}
+               "description": book.description, "publisher": book.publisher, "published_at": book.published_at,
+               }
+    if len(reviews) > 0:
+        context['reviews'] = reviews
     # get a book based on id
     if request.method == 'GET':
         return render(request, context=context,
