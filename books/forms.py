@@ -13,3 +13,7 @@ class PublisherForm(forms.ModelForm):
         cap_name = self.cleaned_data['name']
         cap_name = cap_name.title()
         return cap_name
+
+
+class SuggestedCover(forms.Form):
+    cover = forms.ImageField()
