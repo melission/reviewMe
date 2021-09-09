@@ -8,6 +8,7 @@ from .forms import *
 from reviews.models import ReviewBook
 from reviews.forms import ReviewBookForm
 from reviews.utils import average_rating
+from PIL import Image
 
 
 # Create your views here.
@@ -25,6 +26,7 @@ from reviews.utils import average_rating
 # path /books/details/<int:id>
 def detailed_book_view(request, id):
     form = ReviewBookForm()
+    cover_form = SuggestedCover()
     book = Book.objects.get(id=id)
     contributors = book.contributors.filter(
         Q(bookcontributor__role='AUTHOR') | Q(bookcontributor__role='CO_AUTHOR')
@@ -32,6 +34,7 @@ def detailed_book_view(request, id):
     reviews = ReviewBook.objects.filter(book_id=book.id).order_by('-created_at')[:5]
     context = {'book': book, 'id': id, 'form': form, 'contributors': contributors,
                "description": book.description, "publisher": book.publisher, "published_at": book.published_at,
+               'suggest_cover': cover_form,
                }
     if len(reviews) > 0:
         context['reviews'] = reviews
@@ -39,6 +42,11 @@ def detailed_book_view(request, id):
     if request.method == 'GET':
         return render(request, context=context,
                       template_name='detailed_book_view.html')
+
+    if request.method == 'POST':
+        cover_form = SuggestedCover(request.POST, request.FILES)
+        if cover_form.is_valid():
+            pass
 
     # add a review
     # if request.method == 'POST':
