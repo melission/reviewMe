@@ -16,4 +16,4 @@ class PublisherForm(forms.ModelForm):
 
 
 class SuggestedCover(forms.Form):
-    cover = forms.ImageField()
+    cover = forms.ImageField(upload_to='book_covers/')
