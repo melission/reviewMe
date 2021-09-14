@@ -17,5 +17,5 @@ class PublisherForm(forms.ModelForm):
 
 class CoverForm(forms.ModelForm):
     class Meta:
-        model = BookCover
+        model = Cover
         exclude = ()
