@@ -15,5 +15,7 @@ class PublisherForm(forms.ModelForm):
         return cap_name
 
 
-class SuggestedCover(forms.Form):
-    cover = forms.ImageField(upload_to='book_covers/')
+class CoverForm(forms.ModelForm):
+    class Meta:
+        model = BookCover
+        exclude = ()
