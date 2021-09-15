@@ -15,9 +15,7 @@
             Do you want to suggest a new cover? Add it here:
             <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
                 {{ suggest_cover }}
-                <input type="hidden" id="new_cover" value="{{ book_title }}">
                 <button class="btn btn-outline-dark" type="submit">Suggest a cover</button>
-
             </form>
         </div>
     </div>
