@@ -72,7 +72,6 @@ class BookContributor(models.Model):
 
 
 class Cover(models.Model):
-    id = models.IntegerField(primary_key=True, editable=False)
     cover = models.ImageField(upload_to='suggested_covers/')
 
 
