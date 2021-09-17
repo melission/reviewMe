@@ -22,8 +22,8 @@ class Book(models.Model):
     id = models.IntegerField(primary_key=True, editable=False)
     title = models.CharField(max_length=64,
                              help_text='The title of the book', blank=False)
-    # cover = models.ImageFiled()
-    covers = models.ManyToManyField('Cover', through='BookCover')
+    cover = models.ImageField(blank=True, null=True, upload_to='media/covers/%Y/%m/%D')
+    # covers = models.ManyToManyField('Cover', through='BookCover')
     published_at = models.DateTimeField(help_text='The year the book was published')
     # publisher_name = models.CharField(max_length=64, help_text='Publisher name')
     description = models.CharField(max_length=1000)
@@ -69,15 +69,16 @@ class BookContributor(models.Model):
 
     def __str__(self):
         return f'{self.book} {self.contributor} {self.role}'
-
-
-class Cover(models.Model):
-    cover = models.ImageField(upload_to='suggested_covers/')
-
-
-class BookCover(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    cover = models.ForeignKey(Cover, on_delete=models.DO_NOTHING)
+#
+#
+# class Cover(models.Model):
+#     id = models.IntegerField(primary_key=True, editable=False)
+#     cover = models.ImageField(upload_to='suggested_covers')
+#
+#
+# class BookCover(models.Model):
+#     book = models.ForeignKey(Book, on_delete=models.CASCADE)
+#     cover = models.ForeignKey(Cover, on_delete=models.DO_NOTHING)
 
 # class Review(models.Model):
 #     content = models.TextField(help_text='The review text.')
