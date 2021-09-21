@@ -10,7 +10,12 @@
 {% block content %}
     <div class="row justify-content-center">
     <div class="col-md-4 align-self-center">
+        {% if book.cover %}
+            <img src="{{ book.cover.url }}" class="img-fluid" alt="...">
+        {% endif %}
+        {% if not book.cover %}
         <img src="{% static 'basic_static/basic_book_cover.svg' %}" class="img-fluid" alt="...">
+        {% endif %}
         <div class="row justify-content-center" style="margin-top: 5px">
             Do you want to suggest a new cover? Add it here:
             <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
