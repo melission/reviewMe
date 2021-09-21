@@ -15,7 +15,7 @@ class PublisherForm(forms.ModelForm):
         return cap_name
 
 
-class CoverForm(forms.ModelForm):
-    class Meta:
-        model = Cover
-        exclude = ()
+# class CoverForm(forms.ModelForm):
+#     class Meta:
+#         model = Cover
+#         exclude = ()
