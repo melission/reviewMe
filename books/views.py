@@ -86,6 +86,8 @@ def book_list_page(request):
         else:
             book_rating = None
             number_of_reviews = 0
+        if book.cover:
+            context['cover'] = book.cover
         book_list.append({'book': book,
                           'book_rating': book_rating,
                           'number_of_reviews': number_of_reviews,
