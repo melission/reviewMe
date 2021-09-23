@@ -86,8 +86,6 @@ def book_list_page(request):
         else:
             book_rating = None
             number_of_reviews = 0
-        if book.cover:
-            context['cover'] = book.cover
         book_list.append({'book': book,
                           'book_rating': book_rating,
                           'number_of_reviews': number_of_reviews,
@@ -96,6 +94,7 @@ def book_list_page(request):
                           'number_of_authors': len(contributors),
                           'id': book.id,
                           'date': book.published_at.year,
+                          'cover': book.cover or None
                           })
     context = {'book_list': book_list}
     return render(request, 'book_list.html', context=context)
