@@ -7,6 +7,7 @@ from templates import *
 from .forms import SearchForm
 from itertools import chain
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -20,6 +21,13 @@ def index(request):
     movie_amount = Movie.objects.count()
     massage = f'On the site {book_amount} titles of books and {movie_amount} names of movies'
     return render(request, context={'message': massage}, template_name='index.html')
+
+
+@login_required
+def profile(request):
+
+
+    return render (request, 'profile.html')
 
 
 def bookSearch(search):
