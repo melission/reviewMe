@@ -22,6 +22,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include(('django.contrib.auth.urls', 'auth'), namespace='accounts')),
+    path('accounts/profile/', views.profile, name='profile'),
     path('', views.index, name='main_page'),
     path('search/', views.searchField),
     path('books/', include('books.urls')),
