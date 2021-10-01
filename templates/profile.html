@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+<div>
+<p>
+    Username: {{ request.user.username }}
+    Name: {{ request.user.first_name }}
+    Registration Date: {{ request.user.joined }}
+    Email: {{ request.user.email }}
+    Last Login: {{ request.user.last_login }}
+</p>
+</div>
+{% endblock %}
+</body>
+</html>
