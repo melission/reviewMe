@@ -6,7 +6,7 @@ from django.db import models
 class Movie(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=64)
-    # poster = models.ImageField()
+    cover = models.ImageField(null=True, blank=True, upload_to='movie_covers/%Y/%m/%D')
     released_at = models.IntegerField()
     description = models.CharField(max_length=1000)
     directors = models.ManyToManyField('Directors', through='MovieDirectors')
