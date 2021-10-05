@@ -4,9 +4,11 @@ from .models import ReviewBook
 from reviews.forms import ReviewBookForm
 from books.models import Book
 from django.utils.timezone import now
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
+@login_required
 def book_review_edit(request, id, review_id=None):
 
     book = get_object_or_404(Book, id=id)
