@@ -10,6 +10,11 @@ from reviews.forms import ReviewBookForm
 from reviews.utils import average_rating
 from PIL import Image
 from django.core.exceptions import PermissionDenied
+from django.contrib.auth.decorators import user_passes_test
+
+
+def is_staff_user(user):
+    return user.is_staff
 
 
 # Create your views here.
@@ -103,6 +108,7 @@ def book_list_page(request):
 # path /books/publishers/new or /books/publishers/<int:p_id>
 # a function that gets a request and either saves data to a new publisher, or retrieves due to p_id an existing one
 # p_id is an optional argument; if p_id is None, a new Publisher will be created
+@user_passes_test(is_staff_user)
 def publisher_edit(request, p_id=None):
     # trys to retrieve an existing Publisher based on p_id
     if p_id is not None:
