@@ -33,7 +33,7 @@
     </div>
     </div>
     {% if user.is_authenticated %}
-    <div class="d-flex">
+    <div class="d-flex justify-content-center">
         <a href="/books/details/{{ id }}/add_review/" class="btn btn-outline-dark"> Add review </a>
 {#    <form method="post" action="/books/details/{{ id }}/add_review/"> {% csrf_token %}#}
 {#        <p>{{ form.as_p }}</p>#}
@@ -47,10 +47,13 @@
     <div class="card" style="margin: 1%; width: 19%">
         <div class="card-header"> {{ review.rating }}</div>
             <div class="card-body"> {{ review.content }}</div>
-                <div class="card-footer text-muted" style=""> {{ review.creator }}
-        </div>
+                <div class="card-footer text-muted" style=""> {{ review.creator }}</div>
     </div>
     {% endfor %}
+        {% else %}
+        <div class="card" style="margin: 1%">
+        <div class="card-body">Be the first one who wrote a review!</div>
+        </div>
     {% endif %}
     </div>
 {% endblock %}
