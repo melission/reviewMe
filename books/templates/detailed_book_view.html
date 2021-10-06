@@ -32,6 +32,7 @@
     <div class="card-body" style="height: 200px">Description: {{ description }}</div>
     </div>
     </div>
+    {% if user.is_authenticated %}
     <div class="d-flex">
         <a href="/books/details/{{ id }}/add_review/" class="btn btn-outline-dark"> Add review </a>
 {#    <form method="post" action="/books/details/{{ id }}/add_review/"> {% csrf_token %}#}
@@ -39,6 +40,7 @@
 {#    <button class="btn btn-outline-dark" type="submit" >Send a review</button>#}
 {#    </form>#}
     </div>
+    {% endif %}
     <div class="d-flex justify-content-center">
     {% if reviews %}
         {% for review in reviews %}
