@@ -22,7 +22,11 @@
 <div class="card mb-3" style="max-width: 540px; height: 350px; margin: 10px">
   <div class="row g-0">
     <div class="col-md-4 align-self-center">
+        {% if movie.poster %}
+            <img src="{{ movie.poster.url }}" class="img-fluid" alt="..." alt="">
+        {% else %}
         <img src="{% static 'basic_static/basic_movie_cover.svg' %}" class="img-fluid" alt="...">
+        {% endif %}
     </div>
       <div class="col-md-8">
           <div class="card-title fs-5 fw-bold" style="height: 50px; margin: 2px">{{ movie.title }}</div>
