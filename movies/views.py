@@ -29,6 +29,7 @@ def movies_all(request):
             'directors': directors,
             'description': movie.description,
             'writers': writers,
+            'poster': movie.cover or None,
         })
 
     return render(request, 'movie_list.html',
