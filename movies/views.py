@@ -4,6 +4,7 @@ from .forms import *
 from django.db.models import Q
 from django.http import HttpResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -41,6 +42,7 @@ def detailed_movie(request, id):
     return render(request, 'detailed_movie.html', context={'movie': movie})
 
 
+@login_required
 def add_person(request):
     if request.method == 'GET':
         # print(request.GET)
