@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from books.models import *
 from movies.models import *
@@ -25,9 +25,7 @@ def index(request):
 
 @login_required
 def profile(request):
-
-
-    return render (request, 'profile.html')
+    return render(request, 'profile.html')
 
 
 def bookSearch(search):
