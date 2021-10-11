@@ -44,6 +44,18 @@ def detailed_book_view(request, id):
         context['cover'] = book.cover
     if len(reviews) > 0:
         context['reviews'] = reviews
+
+    # to show ten last viewed books; stored in request,session, no need to add in 'context'
+    if request.user.is_authenticated:
+        max_viewed_books_length = 10
+        viewed_books = request.session.get('viewed_books', []) #if no key, takes empty list
+        viewed_book = [book.id, book.title]
+        # if exists, will be removed and insert on zero index
+        if viewed_book in viewed_books:
+            viewed_books.pop(viewed_books.index(viewed_book))
+        viewed_books.insert(0, viewed_book)
+        viewed_books = viewed_books[:max_viewed_books_length]
+        request.session['viewed_books'] = viewed_books
     # get a book based on id
     if request.method == 'GET':
         return render(request, context=context,
