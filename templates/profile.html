@@ -8,15 +8,23 @@
 </head>
 <body>
 {% block content %}
-<div>
-<p>
-    Username: {{ request.user.username }}
-    Name: {{ request.user.first_name }}
-    Registration Date: {{ request.user.joined }}
-    Email: {{ request.user.email }}
-    Last Login: {{ request.user.last_login }}
-</p>
-</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col" style="width: 45%; margin: 1%">
+                <p>Username: {{ request.user.username }}</p>
+                <p>Name: {{ request.user.first_name }}</p>
+                <p>Registration Date: {{ request.user.joined }}</p>
+                <p>Email: {{ request.user.email }}</p>
+                <p>Last Login: {{ request.user.last_login }}</p>
+            </div>
+            <div class="col" style="width: 45%; margin: 1%">
+                <p>The things you've watched recently:</p>
+                {% for book_id, book_title in request.session.viewed_books %}
+                    <p><a href="/books/details/{{ book_id }}">{{ book_title }}</a></p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
 </body>
 </html>
