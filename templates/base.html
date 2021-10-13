@@ -37,6 +37,11 @@
             <li class="nav-item">
               <a class="nav-link" href="/movies/">Movies</a>
             </li>
+          {% if user.is_authenticated %}
+              <li class="nav-item">
+              <a class="nav-link" href="/accounts/profile">Profile</a>
+            </li>
+          {% endif %}
             <li class="nav-item navbar-light-active-color">
                 {% if user.is_authenticated  %}
                     <a class="nav-link fw-bolder text-warning" href="/accounts/logout">Logout</a>
@@ -46,6 +51,9 @@
                        href="/accounts/login/">Log in</a>
                 {% endif %}
             </li>
+          <li>
+
+          </li>
           </ul>
         </div>
         <div class="justify-content-end">
