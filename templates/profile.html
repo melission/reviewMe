@@ -21,6 +21,8 @@
                 <p>The things you've watched recently:</p>
                 {% for book_id, book_title in request.session.viewed_books %}
                     <p><a href="/books/details/{{ book_id }}">{{ book_title }}</a></p>
+                    {% empty %}
+                    There will be last viewed books.
                 {% endfor %}
             </div>
         </div>
