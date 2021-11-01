@@ -18,9 +18,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 from . import views
+from reviewme_admin.admin import admin_site
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin_site.urls),
     path('accounts/', include(('django.contrib.auth.urls', 'auth'), namespace='accounts')),
     path('accounts/profile/', views.profile, name='profile'),
     path('', views.index, name='main_page'),
