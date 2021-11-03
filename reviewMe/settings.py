@@ -56,7 +56,8 @@ INSTALLED_APPS = [
     'books',
     'reviews',
     # 'django.contrib.admin', // was replaced with 'reviewMe.apps.ReviewMeAdminConfig'
-    'reviewMe.apps.ReviewMeAdminConfig',
+    # 'reviewMe.apps.ReviewMeAdminConfig', // replaced with 'reviewme_admin.apps.ReviewmeAdminConfig'
+    'reviewme_admin.apps.ReviewmeAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
