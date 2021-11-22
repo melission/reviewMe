@@ -16,13 +16,13 @@
         {% if not book.cover %}
         <img src="{% static 'basic_static/basic_book_cover.svg' %}" class="img-fluid" alt="...">
         {% endif %}
-        <div class="row justify-content-center" style="margin-top: 5px">
-            Do you want to suggest a new cover? Add it here:
-            <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-                {{ suggest_cover }}
-                <button class="btn btn-outline-dark" type="submit">Suggest a cover</button>
-            </form>
-        </div>
+{#        <div class="row justify-content-center" style="margin-top: 5px">#}
+{#            Do you want to suggest a new cover? Add it here:#}
+{#            <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}#}
+{#                {{ suggest_cover }}#}
+{#                <button class="btn btn-outline-dark" type="submit">Suggest a cover</button>#}
+{#            </form>#}
+{#        </div>#}
     </div>
     <div class="card" style="width: 400px; height: 400px">
     <div class="card-header" style="height: 50px">{{ book.title }}</div>
@@ -33,7 +33,7 @@
     </div>
     </div>
     {% if user.is_authenticated %}
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center" style="margin: 30px">
         <a href="/books/details/{{ id }}/add_review/" class="btn btn-outline-dark"> Add review </a>
 {#    <form method="post" action="/books/details/{{ id }}/add_review/"> {% csrf_token %}#}
 {#        <p>{{ form.as_p }}</p>#}
