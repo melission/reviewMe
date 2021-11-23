@@ -13,5 +13,15 @@ class ReviewMeAdmin(admin.AdminSite):
         context = self.each_context(request)
         return TemplateResponse(request, 'admin/admin_profile.html', context)
 
+    # this function overrides a custom get_urls()
+    def get_urls(self):
+        # fetches the list of urls that mapped to the admin class
+        urls = super().get_urls()
+
+        # needs to map a custom view to a url provided by the admin site.
+        url_patterns = [path('admin_profile', self.profile_view)]
+        return urls + url_patterns
+
+
 
 admin_site = ReviewMeAdmin(name='reviewme_admin')
