@@ -19,9 +19,8 @@ class ReviewMeAdmin(admin.AdminSite):
         urls = super().get_urls()
 
         # needs to map a custom view to a url provided by the admin site.
-        url_patterns = [path('admin_profile', self.profile_view)]
+        url_patterns = [path("admin_profile", self.admin_view(self.profile_view))]
         return urls + url_patterns
-
 
 
 admin_site = ReviewMeAdmin(name='reviewme_admin')
