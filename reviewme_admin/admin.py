@@ -20,7 +20,9 @@ class ReviewMeAdmin(admin.AdminSite):
 
         # needs to map a custom view to a url provided by the admin site.
         url_patterns = [path("admin_profile", self.admin_view(self.profile_view))]
-        return urls + url_patterns
+        # print(urls)
+        # print(url_patterns)
+        return url_patterns + urls
 
 
 admin_site = ReviewMeAdmin(name='reviewme_admin')
