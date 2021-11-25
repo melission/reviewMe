@@ -22,6 +22,9 @@ class ReviewMeAdmin(admin.AdminSite):
         url_patterns = [path("admin_profile", self.admin_view(self.profile_view))]
         # print(urls)
         # print(url_patterns)
+
+        # url_patterns must be returned at a first variable,
+        # otherwise Django mapping cannot find path to 'admin/admin_profile
         return url_patterns + urls
 
 
