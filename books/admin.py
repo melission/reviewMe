@@ -8,7 +8,7 @@ class BookAdmin(admin.ModelAdmin):
     date_hierarchy = 'published_at'
     list_display = ('title', 'isnb_with_dashes', 'published_at')
     list_filter = ('publisher', 'contributors', 'published_at',)
-    search_fields = ('title', 'isbn', 'contributors')
+    search_fields = ('title', 'isbn', 'contributors', 'publisher')
     # filter = () // to modify the fields users will see in the admin panel
     # fieldsets = (('The title and contributors', {'fields': ('title',)}),
     #              ('Info', {'fields': ('publisher', 'description')})
