@@ -5,10 +5,13 @@ from reviewMe.admin import *
 
 
 class BookAdmin(admin.ModelAdmin):
+    model = Book
     date_hierarchy = 'published_at'
-    list_display = ('title', 'isnb_with_dashes', 'published_at')
+    list_display = ('title', 'isnb_with_dashes', 'published_at', 'get_publisher')
     list_filter = ('publisher', 'contributors', 'published_at',)
-    search_fields = ('title', 'isbn', 'contributors', 'publisher')
+
+    # foreignkeyfield__name
+    search_fields = ['title', 'isbn', 'publisher__name']
     # filter = () // to modify the fields users will see in the admin panel
     # fieldsets = (('The title and contributors', {'fields': ('title',)}),
     #              ('Info', {'fields': ('publisher', 'description')})
@@ -19,6 +22,9 @@ class BookAdmin(admin.ModelAdmin):
         """ '9780316769174' => '978-0-31-676917-4' """
         return '{}-{}-{}-{}-{}'.format(
             obj.isbn[0:3], obj.isbn[3:4], obj.isbn[4:6], obj.isbn[6:12], obj.isbn[12:13])
+
+    def get_publisher(self, obj):
+        return obj.publisher.name
 
 
 class ContributorAdmin(admin.ModelAdmin):
