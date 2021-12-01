@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load profile_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +27,8 @@
                 {% endfor %}
             </div>
         </div>
+    <p>A block with your reviews</p>
+    {% reviews_list_tag user.id %}
     </div>
 {% endblock %}
 </body>
