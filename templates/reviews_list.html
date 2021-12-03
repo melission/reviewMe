@@ -8,11 +8,13 @@
 </head>
 <body>
 {% if reviews %}
-<div class="reviews_list">
+<div class="flex-container">
     {% for review in reviews %}
-    <div class="review_element">
-        {{ review.book_title }} written by {% for author in review.authors %} {{ author }} {% endfor %},
-        rated at {{ review.rating }}, <a style="text-align: right" href="/books/details/{{ review.book_id }}">see a book</a>.
+    <div>
+        <a style="text-align: right" href="/books/details/{{ review.book_id }}">
+            {{ review.book_title }} written by {% for author in review.authors %} {{ author }} {% endfor %},
+            rated at {{ review.rating }}.
+        </a>
     </div>
     {% endfor %}
 </div>
