@@ -1,0 +1,18 @@
+/*a parent*/
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 35%;
+    border-left: 8px solid white;
+    justify-content: space-between;
+    height: 180px;
+    background-color: cornsilk;
+}
+
+/*a child class*/
+.flex-container > div {
+    height: auto;
+    margin: 5px;
+    line-height: 30px;
+}
