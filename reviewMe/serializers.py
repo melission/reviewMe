@@ -19,8 +19,19 @@ class BookSerializer(serializers.ModelSerializer):
         # fields = '__all__'
         exclude = ('cover',)
 
-    # id = serializers.IntegerField()
-    # title = serializers.CharField()
-    # isbn = serializers.CharField()
-    # published_at = serializers.DateTimeField()
-    # description = serializers.CharField()
+
+class ContributionSerializer(serializers.ModelSerializer):
+    book = BookSerializer()
+
+    class Meta:
+        model = BookContributor
+        fields = ['book', 'role']
+
+
+class ContributorSerializer(serializers.ModelSerializer):
+    bookcontributor_set = ContributionSerializer(read_only=True, many=True)
+    number_contributions = serializers.ReadOnlyField()
+
+    class Meta:
+        model = Contributor
+        fields = ['first_name', 'last_name', 'bookcontributor_set', 'number_contributions']
