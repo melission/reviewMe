@@ -54,6 +54,10 @@ class Contributor(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
+    # goes through BookContribution and gets all collocations
+    def number_contributions(self):
+        return self.bookcontributor_set.count()
+
 
 # the model helps to save data to both tables: Book and Contributor
 class BookContributor(models.Model):
