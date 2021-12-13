@@ -17,5 +17,5 @@ class AllBooks(generics.ListAPIView):
 
 
 class ContributorView(generics.ListAPIView):
-    queryset = Contributor.objects.get()
+    queryset = Contributor.objects.all()
     serializer_class = ContributorSerializer
