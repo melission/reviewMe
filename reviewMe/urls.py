@@ -24,6 +24,7 @@ from reviewme_admin.admin import admin_site
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/all_books', api_views.AllBooks.as_view()),
+    path('api/contributors', api_views.ContributorView.as_view()),
     path('accounts/', include(('django.contrib.auth.urls', 'auth'), namespace='accounts')),
     path('accounts/profile/', views.profile, name='profile'),
     path('', views.index, name='main_page'),
