@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./movie.css">
+</head>
+<body>
+{% block content %}
+    <section class="movie-list">
+        <div class="movie-list__flex-container">
+            <div class="flex-container__movie-card">
+                <div class="movie-card__image">
+
+                </div>
+                <div class="movie-card__info">
+                    <h3 class="info__title"></h3>
+                    <p class="info__cast"></p>
+                    <p class="info__description"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+</body>
+</html>
