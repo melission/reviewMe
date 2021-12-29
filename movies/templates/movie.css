@@ -1,0 +1,32 @@
+.movie-list {
+    margin: auto;
+}
+
+.movie-list__flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-container__movie-card {
+    flex-direction: column;
+}
+
+.movie-card__image {
+
+}
+
+.movie-card__info {
+    display: flex;
+}
+
+.info__title {
+
+}
+
+.info__cast {
+
+}
+
+.info__description {
+
+}
