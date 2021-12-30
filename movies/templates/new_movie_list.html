@@ -11,16 +11,31 @@
 {% block content %}
     <section class="movie-list">
         <div class="movie-list__flex-container">
+            {% for movie in movie_list %}
             <div class="flex-container__movie-card">
                 <div class="movie-card__image">
-
+                    {% if movie.poster %}
+                        <img src="{{ movie.poster.url }}" alt="">
+                    {% else %}
+                        <img src="{% static 'basic_static/basic_movie_cover.svg' %}" alt="">
+                    {% endif %}
                 </div>
                 <div class="movie-card__info">
-                    <h3 class="info__title"></h3>
-                    <p class="info__cast"></p>
-                    <p class="info__description"></p>
+                    <h3 class="info__title text">{{ movie.title }}</h3>
+                    <p class="info__cast text">
+                        Cast: {% for actor in movie.actors %} {{ actor }}, {% endfor %}
+                    </p>
+                    <p class="info__directors text">
+                        Directed by: {% for director in movie.directors %} {{ director }} {% endfor %}
+                    </p>
+                    <p class="info__writers text">
+                        Written by: {% for writer in movie.writers %} {{ writer }} {% endfor %}
+                    </p>
+                    <p class="info__description text"> {{ movie.description }}</p>
+                    <a class="info__button text" href="/movies/details/{{movie.id}}">details</a>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}
