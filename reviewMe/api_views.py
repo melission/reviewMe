@@ -22,6 +22,12 @@ from .serializers import *
 #     queryset = Contributor.objects.all()
 #     serializer_class = ContributorSerializer
 
-class BookViewSet(viewsets.ReadOnlyModelViewSet):
+class AllBookViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+
+class ReviewBookViewSet(viewsets.ModelViewSet):
+    queryset = ReviewBook.objects.order_by('-created_at')
+    serializer_class = ReviewBookSerializer
+    pagination_class = LimitOffsetPagination
+    authentication_classes = []
