@@ -17,14 +17,19 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from . import views
 from . import api_views
 from reviewme_admin.admin import admin_site
 
+router = DefaultRouter()
+router.register(r'books', api_views.AllBookViewSet)
+router.register(r'reviews', api_views.ReviewBookViewSet)
 urlpatterns = [
+    path('api/', include((router.urls, 'api'))),
     path('admin/', admin.site.urls),
-    path('api/all_books', api_views.AllBooks.as_view()),
-    path('api/contributors', api_views.ContributorView.as_view()),
+    # path('api/all_books', api_views.AllBookViewSet.as_view()),
+    # path('api/contributors', api_views.ContributorView.as_view()),
     path('accounts/', include(('django.contrib.auth.urls', 'auth'), namespace='accounts')),
     path('accounts/profile/', views.profile, name='profile'),
     path('', views.index, name='main_page'),
