@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from books.models import *
+from reviews.models import ReviewBook
 
 
 class PublisherSerializer(serializers.ModelSerializer):
@@ -35,3 +36,11 @@ class ContributorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contributor
         fields = ['first_name', 'last_name', 'bookcontributor_set', 'number_contributions']
+
+
+class ReviewBookSerializer(serializers.ModelSerializer):
+
+
+    class Meta:
+        model = ReviewBook
+        fields = '__all__'
