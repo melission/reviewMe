@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from books.models import *
+from movies.models import *
 from reviews.models import ReviewBook
 
 
@@ -44,3 +45,11 @@ class ReviewBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReviewBook
         fields = '__all__'
+
+
+class MovieSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Movie
+        fields = '__all__'
+
