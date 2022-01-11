@@ -24,7 +24,7 @@ from reviewme_admin.admin import admin_site
 
 router = DefaultRouter()
 router.register(r'books', api_views.AllBookViewSet)
-router.register(r'reviews', api_views.ReviewBookViewSet)
+router.register(r'book_reviews', api_views.ReviewBookViewSet)
 urlpatterns = [
     path('api/', include((router.urls, 'api'))),
     path('admin/', admin.site.urls),
