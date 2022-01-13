@@ -44,6 +44,8 @@ class Login(APIView):
 class AllBookViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    authentication_classes = []
+    permission_classes = []
 
 
 class ReviewBookViewSet(viewsets.ModelViewSet):
