@@ -28,6 +28,7 @@ router.register(r'book_reviews', api_views.ReviewBookViewSet)
 router.register(r'movies', api_views.AllMovieViewSet)
 urlpatterns = [
     path('api/', include((router.urls, 'api'))),
+    path('api/login', api_views.Login.as_view(), name='login'),
     path('admin/', admin.site.urls),
     # path('api/all_books', api_views.AllBookViewSet.as_view()),
     # path('api/contributors', api_views.ContributorView.as_view()),
