@@ -38,11 +38,11 @@
                 <p>published by {{ book.publisher }} in {{ book.date }},</p>
             </div>
             <div style="height: 50px">
-                {% if book.number_of_reviews == 0 %} no reviews yet {% endif %}
+                {% if book.number_of_reviews == 0 %} no reviews not rating yet {% endif %}
                 {% if book.number_of_reviews > 1%} {{ book.number_of_reviews }}
-                    reviews with average score of {{ book.book_rating }}{% endif %}
+                    reviews with the average score of {{ book.book_rating }}{% endif %}
                 {% if book.number_of_reviews == 1 %} {{ book.number_of_reviews }}
-                    review with average score of {{ book.book_rating }}{% endif %}
+                    review with the average score of {{ book.book_rating }}{% endif %}
             </div>
         </div>
         <a class="card-footer btn btn-outline-primary" style="vertical-align: bottom" aria-current="page"
