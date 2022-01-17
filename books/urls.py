@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import *
 from reviews.views import book_review_edit
+from . detailed_book_pdf import generate_pdf
 
 urlpatterns = [
     # path('', books_all),
@@ -13,4 +14,5 @@ urlpatterns = [
     path('details/<int:id>/add_review/', book_review_edit),
     path('publishers/<int:p_id>/', publisher_edit, name='publisher_edit'),
     path('publishers/new/', publisher_edit, name='publisher_create'),
+    path('details/<int:id>/pdf/', generate_pdf, name='detailed_book_pdf'),
 ]
