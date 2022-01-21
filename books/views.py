@@ -11,6 +11,7 @@ from reviews.utils import average_rating
 from PIL import Image
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import user_passes_test
+from pdf_generator.views import generate_pdf
 
 
 def is_staff_user(user):
@@ -80,6 +81,23 @@ def detailed_book_view(request, id):
     #         pass
         # print(form.cleaned_data)
         # return render(request, context=context, template_name='detailed_book_view.html')
+
+
+def detailed_book_pdf(request, id):
+    book = Book.objects.get(id=id)
+    contributors = book.contributors.filter(
+        Q(bookcontributor__role='AUTHOR') | Q(bookcontributor__role='CO_AUTHOR')
+    )
+    reviews = ReviewBook.objects.filter(book_id=book.id).order_by('-created_at')[:5]
+    context = {'book': book, 'id': id, 'contributors': contributors,
+               "description": book.description, "publisher": book.publisher, "published_at": book.published_at,
+               }
+    if book.cover:
+        context['cover'] = book.cover
+    if len(reviews) > 0:
+        context['reviews'] = reviews
+    pdf_name = f"{book.title} details"
+    pdf_file = generate_pdf(request, model=context, template_name='detailed_book_view.html', pdf_name=pdf_name)
 
 
 # path /books/
