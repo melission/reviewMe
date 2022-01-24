@@ -97,7 +97,11 @@ def detailed_book_pdf(request, id):
     if len(reviews) > 0:
         context['reviews'] = reviews
     pdf_name = f"{book.title} details"
-    pdf_file = generate_pdf(request, model=context, template_name='detailed_book_view.html', pdf_name=pdf_name)
+    pdf_name = pdf_name.replace(' ', '_')
+    pdf_file = generate_pdf(request, model=context, template_name='detailed_book_view.html')
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+    response['Content-Disposition'] = f"filename={pdf_name}.pdf"
+    return response
 
 
 # path /books/
