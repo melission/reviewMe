@@ -88,14 +88,11 @@ def detailed_book_pdf(request, id):
     contributors = book.contributors.filter(
         Q(bookcontributor__role='AUTHOR') | Q(bookcontributor__role='CO_AUTHOR')
     )
-    reviews = ReviewBook.objects.filter(book_id=book.id).order_by('-created_at')[:5]
     context = {'book': book, 'id': id, 'contributors': contributors,
                "description": book.description, "publisher": book.publisher, "published_at": book.published_at,
                }
     if book.cover:
         context['cover'] = book.cover
-    if len(reviews) > 0:
-        context['reviews'] = reviews
     pdf_name = f"{book.title} details"
     pdf_name = pdf_name.replace(' ', '_')
     pdf_file = generate_pdf(request, model=context, template_name='detailed_book_view.html')
