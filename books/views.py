@@ -88,8 +88,8 @@ def detailed_book_pdf(request, id):
     contributors = book.contributors.filter(
         Q(bookcontributor__role='AUTHOR') | Q(bookcontributor__role='CO_AUTHOR')
     )
-    context = {'book': book, 'id': id, 'contributors': contributors,
-               "description": book.description, "publisher": book.publisher, "published_at": book.published_at,
+    context = {'title': book.title, 'id': id, 'contributors': contributors,
+               "description": book.description, "publisher": book.publisher, "published_at": book.published_at.year,
                }
     if book.cover:
         context['cover'] = book.cover
