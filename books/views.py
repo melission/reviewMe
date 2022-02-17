@@ -95,7 +95,7 @@ def detailed_book_pdf(request, id):
         context['cover'] = book.cover
     pdf_name = f"{book.title} details"
     pdf_name = pdf_name.replace(' ', '_')
-    pdf_file = generate_pdf(request, model=context, template_name='detailed_book_view.html')
+    pdf_file = generate_pdf(context=context)
     response = HttpResponse(pdf_file, content_type='application/pdf')
     response['Content-Disposition'] = f"filename={pdf_name}.pdf"
     return response
