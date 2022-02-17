@@ -1,29 +1,36 @@
+body {
+    border: 1px solid darkred;
+}
+
 ul {
     list-style-type:none;
 }
 .flex-container {
-    min-width: 80%;
+    min-width: 70%;
     max-width: 1000px;
     height: 500px;
-    border: 1px solid darkorange;
+    border: 1px solid blue;
     margin: auto;
-    padding: 0;
+    padding: 10px;
     flex-direction: row;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: baseline;
+    box-sizing: border-box;
 }
 
 .flex-container__image-block {
     border: 1px solid darkmagenta;
     display: block;
+    box-sizing: border-box;
 }
 
 .flex-container__info-block {
     border: 1px solid sienna;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 .columns {
