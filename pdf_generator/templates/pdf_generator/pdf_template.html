@@ -18,33 +18,33 @@
                     <ul class="info-block__list">
                         <li class="list__line list-element">
                             <div class="list__line-text">
-                                <h3 class="list__line-text list__line-header">{{ context.title }}</h3>
+                                <h3 class="list__line-text list__line-header">{{ title }}</h3>
                                 <div class="list__line-text">
-                                    {% if context.published_at %} published in {{ context.published_at }}{% endif %}
-                                    {% if context.released_at %} released in {{ context.released_at }} {% endif %}
+                                    {% if published_at %} published in {{ published_at }}{% endif %}
+                                    {% if released_at %} released in {{ released_at }} {% endif %}
                                 </div>
                             </div>
                         </li>
                         <li class="list__line list-element">
-                            {% if context.contributors %}
-                                <div class="list__line-text">Written by: {% for contributor in context.contributors %}
+                            {% if contributors %}
+                                <div class="list__line-text">Written by: {% for contributor in contributors %}
                                 {{ contributor }} {% endfor %}
                                 </div>
                             {% endif %}
-                            {% if context.directors %}
-                                <div class="list__line-text">Directed by: {% for director in context.directors %}
+                            {% if directors %}
+                                <div class="list__line-text">Directed by: {% for director in directors %}
                                     {{ director }} {% endfor %}
                                 </div>
                             {% endif %}
                             &nbsp;
                         </li>
-                        {% if context.actors %}
+                        {% if actors %}
                             <li class="list__line list-element">
-                            Starring:{% for actor in context.actors %} {{ actor }} {% endfor %}
+                            Starring:{% for actor in actors %} {{ actor }} {% endfor %}
                             </li>
                         {% endif %}
                         <li class="list__list list-element list-long-element">
-                            <div class="list__line-text"> {{ context.description }}</div>
+                            <div class="list__line-text"> {{ description }}</div>
                             &nbsp;
                         </li>
                     </ul>
