@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>the PDF version of {{ context.title }} page</title>
-    <link rel="stylesheet" href="{% static 'pdf_generator/pgf_template.css' %}">
+    <link rel="stylesheet" href="{% static 'pdf_generator/pdf_template.css' %}">
 </head>
 <body>
     {% block content %}
@@ -28,19 +28,19 @@
                         <li class="list__line list-element">
                             {% if contributors %}
                                 <div class="list__line-text">Written by: {% for contributor in contributors %}
-                                {{ contributor }} {% endfor %}
+                                {{ contributor }}, {% endfor %}
                                 </div>
                             {% endif %}
                             {% if directors %}
                                 <div class="list__line-text">Directed by: {% for director in directors %}
-                                    {{ director }} {% endfor %}
+                                    {{ director }}, {% endfor %}
                                 </div>
                             {% endif %}
                             &nbsp;
                         </li>
                         {% if actors %}
                             <li class="list__line list-element">
-                            Starring:{% for actor in actors %} {{ actor }} {% endfor %}
+                            Starring:{% for actor in actors %} {{ actor }}, {% endfor %}
                             </li>
                         {% endif %}
                         <li class="list__list list-element list-long-element">
