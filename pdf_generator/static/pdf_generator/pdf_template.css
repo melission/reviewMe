@@ -54,7 +54,7 @@ section {
 .list-element {
     /*line-height: 60px;*/
     border: 1px solid hotpink;
-    height: 23%;
+    max-height: 23%;
     margin: 15px;
     padding: 0;
     overflow: hidden;
@@ -62,7 +62,8 @@ section {
 
 .list-long-element {
     /*line-height: 200px;*/
-    height: 40%;
+    max-height: 35%;
+    overflow: hidden;
 }
 
 .list__line-header {
