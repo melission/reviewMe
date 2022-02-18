@@ -21,6 +21,7 @@
                                 <h3 class="list__line-text list__line-header">{{ title }}</h3>
                                 <div class="list__line-text">
                                     {% if published_at %} published in {{ published_at }}{% endif %}
+                                    {% if publisher %} by {{ publisher }} {% endif %}
                                     {% if released_at %} released in {{ released_at }} {% endif %}
                                 </div>
                             </div>
