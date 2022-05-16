@@ -96,6 +96,7 @@ def detailed_book_pdf(request, id):
     pdf_name = f"{book.title} details"
     pdf_name = pdf_name.replace(' ', '_')
     pdf_file = generate_pdf(context=context)
+    # return pdf_file
     response = HttpResponse(pdf_file, content_type='application/pdf')
     response['Content-Disposition'] = f"filename={pdf_name}.pdf"
     return response
