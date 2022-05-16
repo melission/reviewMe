@@ -20,6 +20,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
 from . import api_views
+from pdf_generator.views import pdf_template
 from reviewme_admin.admin import admin_site
 
 router = DefaultRouter()
@@ -38,6 +39,8 @@ urlpatterns = [
     path('search/', views.searchField),
     path('books/', include('books.urls')),
     path('movies/', include('movies.urls')),
+    # the path below is for testing purposes only
+    path('pdf_template', pdf_template)
 ]
 
 if settings.DEBUG:
