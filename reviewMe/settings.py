@@ -153,7 +153,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'production_static'
 # must be a tuple of a list
 STATICFILES_DIRS = [BASE_DIR / 'static',
-                    ("basic_static", '/Users/polinabelousova/PycharmProjects/reviewMe/reviewMe/static/reviewMe.basic.static/')]
+                    ("basic_static",
+                     '/Users/polinabelousova/PycharmProjects/reviewMe/reviewMe/static/reviewMe.basic.static/')]
 
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 # Default primary key field type
