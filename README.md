@@ -7,3 +7,5 @@ Book application [so far] requests Pillow library. Link: https://pillow.readthed
 Depends on weasyprint, more here: https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation
 
 Depends on django-configurations library, more here: https://django-configurations.readthedocs.io/en/stable/
+
+Depends on dj-database-ulr library, more here: https://pypi.org/project/dj-database-url/
