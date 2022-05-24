@@ -9,3 +9,5 @@ Depends on weasyprint, more here: https://doc.courtbouillon.org/weasyprint/stabl
 Depends on django-configurations library, more here: https://django-configurations.readthedocs.io/en/stable/
 
 Depends on dj-database-ulr library, more here: https://pypi.org/project/dj-database-url/
+
+Depends on django-debug-toolbar lib, more here: https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
