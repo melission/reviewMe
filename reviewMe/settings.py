@@ -15,6 +15,8 @@ import json
 import os
 from django.core.exceptions import ImproperlyConfigured
 from configurations import Configuration, values
+import dj_database_url
+
 
 try:
     with open('sensitive.json', 'r') as f:
@@ -113,13 +115,23 @@ class Dev(Configuration):
     # Database
     # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': BASE_DIR / 'db.sqlite3',
+    #     }
+    # }
 
+    # DATABASES = {
+    #     'default': dj_database_url.config(
+    #         default='sqlite:///{}/db.sqlite3'.format(BASE_DIR)
+    #     )
+    # }
+
+    DATABASES = values.DatabaseURLValue(
+            'sqlite:///{}/db.sqlite3'.format(BASE_DIR),
+            environ_prefix='DJANGO',
+        )
 
     # Password validation
     # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
