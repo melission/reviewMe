@@ -40,8 +40,15 @@ urlpatterns = [
     path('books/', include('books.urls')),
     path('movies/', include('movies.urls')),
     # the path below is for testing purposes only
-    path('pdf_template', pdf_template)
+    path('pdf_template', pdf_template),
 ]
 
 if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns = [
+                    path('__debug__/', include(debug_toolbar.urls)),
+                  ] + urlpatterns
+
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
