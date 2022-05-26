@@ -11,3 +11,6 @@ Depends on django-configurations library, more here: https://django-configuratio
 Depends on dj-database-ulr library, more here: https://pypi.org/project/dj-database-url/
 
 Depends on django-debug-toolbar lib, more here: https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
+
+Depends on django-cryspy-forms lib, more here https://django-crispy-forms.readthedocs.io/en/latest/
+
