@@ -78,6 +78,7 @@ class Dev(Configuration):
         'rest_framework.authtoken',
         'pdf_generator',
         'debug_toolbar',
+        'crispy_forms',
     ]
 
     MIDDLEWARE = [
@@ -191,6 +192,8 @@ class Dev(Configuration):
     INTERNAL_IPS = [
         '127.0.0.1',
     ]
+
+    CRYSPY_TEMPLATE_PACK = 'boostrap4'
 
 
 class Prod(Dev):
