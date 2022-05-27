@@ -193,7 +193,7 @@ class Dev(Configuration):
         '127.0.0.1',
     ]
 
-    CRYSPY_TEMPLATE_PACK = 'boostrap4'
+    CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 class Prod(Dev):
