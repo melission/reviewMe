@@ -79,6 +79,11 @@ class Dev(Configuration):
         'pdf_generator',
         'debug_toolbar',
         'crispy_forms',
+        # libs for django-allauth lib
+        'django.contrib.sites',
+        'allauth',
+        'allauth.socialaccount',
+        'allauth.socialaccount.providers.google',
     ]
 
     MIDDLEWARE = [
@@ -194,6 +199,8 @@ class Dev(Configuration):
     ]
 
     CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+    SITE_ID = 1
 
 
 class Prod(Dev):
