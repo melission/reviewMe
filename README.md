@@ -14,3 +14,4 @@ Depends on django-debug-toolbar lib, more here: https://django-debug-toolbar.rea
 
 Depends on django-cryspy-forms lib, more here https://django-crispy-forms.readthedocs.io/en/latest/
 
+Depends on django-allauth lib, more https://django-allauth.readthedocs.io/en/latest/installation.html
