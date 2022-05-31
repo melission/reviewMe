@@ -39,6 +39,7 @@ urlpatterns = [
     path('search/', views.searchField),
     path('books/', include('books.urls')),
     path('movies/', include('movies.urls')),
+    path('allauth/', include('allauth.urls')),
     # the path below is for testing purposes only
     path('pdf_template', pdf_template),
 ]
