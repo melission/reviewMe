@@ -33,13 +33,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('api/all_books', api_views.AllBookViewSet.as_view()),
     # path('api/contributors', api_views.ContributorView.as_view()),
-    path('accounts/', include(('django.contrib.auth.urls', 'auth'), namespace='accounts')),
+    # path('accounts/', include(('django.contrib.auth.urls', 'auth'), namespace='accounts')),
     path('accounts/profile/', views.profile, name='profile'),
     path('', views.index, name='main_page'),
     path('search/', views.searchField),
     path('books/', include('books.urls')),
     path('movies/', include('movies.urls')),
-    path('allauth/', include('allauth.urls')),
+    # path('allauth/', include('allauth.urls')),
+    path('accounts/', include('allauth.urls')),
     # the path below is for testing purposes only
     path('pdf_template', pdf_template),
 ]
