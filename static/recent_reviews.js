@@ -27,3 +27,16 @@ class ReviewDisplay extends React.Component {
         </div>;
     }
 }
+
+class RecentReviews extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            reviews: [],
+            currentUrl: props.url,
+            nextUrl: null,
+            previousUrl: null,
+            loading: false
+        };
+    }
+}
