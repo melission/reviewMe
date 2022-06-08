@@ -61,4 +61,8 @@ class RecentReviews extends React.Component {
             })
         })
     }
+
+     componentDidMount() {
+        this.fetchReviews()
+     }
 }
