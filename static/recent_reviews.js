@@ -65,4 +65,12 @@ class RecentReviews extends React.Component {
      componentDidMount() {
         this.fetchReviews()
      }
+
+     loadNext() {
+        if (this.state.nextUrl == null)
+            return;
+
+            this.state.currentUrl = this.state.nextUrl;
+            this.fetchReviews();
+     }
 }
