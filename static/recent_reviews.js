@@ -81,4 +81,17 @@ class RecentReviews extends React.Component {
             this.state.currentUrl = this.state.previousUrl;
             this.fetchReviews();
      }
+
+     render () {
+        if (this.state.loading) {
+            return <h5>Loading...</h5>;
+        }
+
+        const previousButton = <button
+            className="btn btn-secondary"
+            onClick={ () => {this.loadPrevious() }}
+            disabled={ this.state.previousUrl == null}> Previous
+        </button>;
+
+     }
 }
