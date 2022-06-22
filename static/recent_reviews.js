@@ -93,5 +93,22 @@ class RecentReviews extends React.Component {
             disabled={ this.state.previousUrl == null}> Previous
         </button>;
 
+        const nextButton = <button
+            className="btn btn-secondary float-right"
+            onClick={ () => { this.loadNext()} }
+            disabled={ this.state.nextUrl == null}>Next
+        </button>;
+
+        let reviewItems;
+
+        if (this.state.reviews.length === 0) {
+            reviewItems = <h5>Ne reviews to display</h5>
+        } else {
+            reviewItems = this.state.reviews.map((review) => {
+                return <ReviewDisplay key={review.pk} review={review}/>
+            })
+        }
+
+
      }
 }
