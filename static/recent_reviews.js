@@ -109,6 +109,14 @@ class RecentReviews extends React.Component {
             })
         }
 
-
+        return <div>
+            <div className="row row-cols-1 row-cols-md-3">
+                { reviewItems }
+            </div>
+            <div>
+                { previousButton }
+                { nextButton }
+            </div>
+        </div>;
      }
 }
